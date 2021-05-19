@@ -6,7 +6,6 @@ public class Code04_MinSwapStep {
     // 可以让所有的G都放在左侧，所有的B都放在右侧
     // 或者可以让所有的G都放在右侧，所有的B都放在左侧
     // 但是只能在相邻字符之间进行交换操作，请问请问至少需要交换几次
-
     public static int minSteps1(String s) {
         if (s == null || s.equals("")) {
             return 0;
