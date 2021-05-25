@@ -25,6 +25,7 @@ public class Code01_SegmenTree {
         private int[] lazy;
         private int[] change;
         private boolean[] update;
+
         /*
             左孩子
             右孩子
@@ -65,17 +66,17 @@ public class Code01_SegmenTree {
             if (L <= l && R >= r) { //覆盖了当前的范围
                 update[rt] = true;
                 change[rt] = C;
-                sum[rt] = (r-l + 1) * C;
+                sum[rt] = (r - l + 1) * C;
                 lazy[rt] = 0;
                 return;
             }
             int mid = (l + r) >> 1;
             pushDown(rt, mid - l + 1, r - mid);
             if (L <= mid) {
-                update(L, R, C, l, mid, rt<<1);
+                update(L, R, C, l, mid, rt << 1);
             }
             if (R > mid) {
-                update(L, R, C, mid+1, r, rt<<1 |1);
+                update(L, R, C, mid + 1, r, rt << 1 | 1);
             }
             pushUp(rt);
         }
@@ -87,7 +88,7 @@ public class Code01_SegmenTree {
         public void add(int L, int R, int C, int l, int r, int rt) {
             // 任务的范围彻底覆盖了，当前表达的范围
             if (L <= l && R >= r) {
-                sum[rt] += (r-l + 1) * C;
+                sum[rt] += (r - l + 1) * C;
                 lazy[rt] += C;
                 return;
             }
@@ -98,11 +99,11 @@ public class Code01_SegmenTree {
             pushDown(rt, mid + 1 - l, r - mid);
             // 左孩子是否需要接到任务
             if (L <= mid) {
-                add(L, R, C, l, mid, rt<<1);
+                add(L, R, C, l, mid, rt << 1);
             }
             // 右孩子是否需要接到任务
             if (R > mid) {
-                add(L, R, C, mid+1, r, rt<<1 |1);
+                add(L, R, C, mid + 1, r, rt << 1 | 1);
             }
             // 左右孩子做完任务后，我更新我的sum信息
             pushUp(rt);
@@ -120,7 +121,7 @@ public class Code01_SegmenTree {
                 update[rt << 1 | 1] = true;
                 change[rt << 1 | 1] = change[rt];
                 lazy[rt << 1 | 1] = 0;
-                sum[rt << 1 | 1] = change[rt]*rn;
+                sum[rt << 1 | 1] = change[rt] * rn;
                 update[rt] = false;
             }
             //将懒住的累加任务下发
@@ -137,14 +138,14 @@ public class Code01_SegmenTree {
             if (L <= l && R >= r) {
                 return sum[rt];
             }
-            int mid = (l +r ) >>1;
+            int mid = (l + r) >> 1;
             pushDown(rt, mid - l + 1, r - mid);
             long ans = 0;
             if (L <= mid) {
-                ans +=query(L, R, l, mid, rt<<1);
+                ans += query(L, R, l, mid, rt << 1);
             }
             if (R > mid) {
-                ans += query(L, R, mid+1 ,r, rt<<1|1);
+                ans += query(L, R, mid + 1, r, rt << 1 | 1);
             }
             return ans;
         }
@@ -234,7 +235,7 @@ public class Code01_SegmenTree {
         }
 
         public static void main(String[] args) {
-            int[] origin = { 2, 1, 1, 2, 3, 4, 5 };
+            int[] origin = {2, 1, 1, 2, 3, 4, 5};
             SegmentTree seg = new SegmentTree(origin);
             int S = 1; // 整个区间的开始位置，规定从1开始，不从0开始 -> 固定
             int N = origin.length; // 整个区间的结束位置，规定能到N，不是N-1 -> 固定

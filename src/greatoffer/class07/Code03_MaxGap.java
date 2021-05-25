@@ -47,11 +47,14 @@ public class Code03_MaxGap {
         return ((val - min) * bucketLen / (max - min));
     }
 
+
 //    // 如果当前的数是num，整个范围是min~max，分成了len + 1份
 //    // 返回num该进第几号桶
 //    public static int getBucketId(long num, long len, long min, long max) {
 //        return (int) ((num - min) * len / (max - min));
 //    }
+
+
 
 
     // for test
