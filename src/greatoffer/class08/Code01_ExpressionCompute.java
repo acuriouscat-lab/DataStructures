@@ -52,7 +52,7 @@ public class Code01_ExpressionCompute {
             } else if (cur.equals("-")) {
                 add = false;
             }else{
-                num = Integer.valueOf(cur);
+                num = Integer.parseInt(cur);
                 res += add ? num : (-num);
             }
 
