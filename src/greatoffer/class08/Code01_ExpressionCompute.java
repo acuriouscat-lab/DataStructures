@@ -94,6 +94,9 @@ public class Code01_ExpressionCompute {
         exp = "3+1*4";
         System.out.println(getValue(exp));
 
+        exp = "(1+(4+5+2)-3)+(6+8)";
+        System.out.println(getValue(exp));
+
     }
 
 

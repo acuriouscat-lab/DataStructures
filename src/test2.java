@@ -96,7 +96,7 @@ class Solution {
 
 }
 
-class Solution {
+class Solution1 {
     public int minChanges(int[] nums, int k) {
         int n = nums.length, m = 1024;
         int[] prev = new int[m];
