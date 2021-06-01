@@ -11,7 +11,7 @@ public class Problem_0348_DesignTicTacToe {
         private boolean[][] matrix;
         private int N;
         public TicTacToe(int n){
-            // row[i][1] --> 1 玩家在 i 行下了几个棋子
+            // row[i][1] -- > 1 玩家在 i 行下了几个棋子
             row = new int[n][3];
             col = new int[n][3];
             leftUp = new int[3];

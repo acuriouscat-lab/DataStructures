@@ -10,7 +10,7 @@ public class Code04_Driver {
         }
         int N = incomes.length;
         int M = N >> 1;
-        // dp[i][j]
+        // dp[i][j] 表示 i..之后还未分配，A区域还有 j 辆需要分配的最大收益
         int[][] dp = new int[N + 1][M + 1];
         for (int i = N - 1; i >= 0; i--) {
             for (int j = 0; j <= M; j++) {
@@ -23,7 +23,7 @@ public class Code04_Driver {
                 }
             }
         }
-        return dp[0][M ];
+        return dp[0][M];
     }
 
     // 返回随机len*2大小的正数矩阵

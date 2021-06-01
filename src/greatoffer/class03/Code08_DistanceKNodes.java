@@ -56,8 +56,9 @@ public class Code08_DistanceKNodes {
         return ans;
     }
 
-    public static void createParentMap(Node node, HashMap<Node,Node> parentMap){
-        if(node == null){
+    // 生成节点的父节点 记录在 parentMap 中
+    public static void createParentMap(Node node, HashMap<Node, Node> parentMap) {
+        if (node == null) {
             return;
         }
         if (node.left != null) {
@@ -107,7 +108,6 @@ public class Code08_DistanceKNodes {
         }
         return ans;
     }
-
 
 
     public static void main(String[] args) {

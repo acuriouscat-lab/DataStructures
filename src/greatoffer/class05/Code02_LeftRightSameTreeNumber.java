@@ -20,8 +20,8 @@ public class Code02_LeftRightSameTreeNumber {
     }
 
 
-    public static int sameNumber1(Node head){
-        if(head == null){
+    public static int sameNumber1(Node head) {
+        if (head == null) {
             return 0;
         }
         return sameNumber1(head.left) + sameNumber1(head.right) + (same(head.left, head.right) ? 1 : 0);

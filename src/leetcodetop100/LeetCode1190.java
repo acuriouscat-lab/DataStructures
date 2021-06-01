@@ -12,6 +12,9 @@ public class LeetCode1190 {
         StringBuilder sb = new StringBuilder();
         char[] str = s.toCharArray();
         int index = 0;
+        /**
+         *  找到每个左括号开始的位置，交给 process 方法处理
+         */
         while (index < str.length) {
             if (str[index] == '(') {
                 index = process(str, index + 1);
@@ -26,7 +29,12 @@ public class LeetCode1190 {
         return sb.toString();
     }
 
-
+    /**
+     *
+     * @param str 要处理的字符串
+     * @param L L-1为左括号，
+     * @return  处理 L-1左括号到对应的右括号的位置 反转后返回最后处理到的位置
+     */
     public static int process(char[] str,int L){
         int index = L;
         while (index < str.length && str[index] != ')') {

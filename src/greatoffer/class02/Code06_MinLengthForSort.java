@@ -12,6 +12,7 @@ public class Code06_MinLengthForSort {
         }
         int leftMax = Integer.MIN_VALUE;
         int leftIndex = -1;
+        // 找到最右边需要排序的地方：判断是否一次递增 不是的话说明当前需要排序 leftIndex
         for (int i = 0; i < arr.length; i++) {
             if(leftMax <= arr[i]){
                 leftMax = arr[i];
@@ -24,6 +25,7 @@ public class Code06_MinLengthForSort {
         }
         int rightMin = Integer.MAX_VALUE;
         int rightIndex = arr.length;
+        // 找到最左边需要排序的地方：判断是否依次递减，不是的话说明当前需要排序 rightIndex
         for (int i = arr.length - 1; i >= 0; i--) {
             if (rightMin >= arr[i]) {
                 rightMin = arr[i];
