@@ -92,27 +92,6 @@ public class Code07_TargetSum {
         return dp[s];
     }
 
-    public static int subset2(int[] nums, int s) {
-        int N = nums.length;
-        int[][] dp = new int[N][s + 1];
-
-        for(int i = 0; i < nums.length; i++){
-            dp[i][0] = 1;
-        }
-        if(nums[0] <= s){
-            dp[0][nums[0]] = 1;
-        }
-        for (int i = 1; i < N; i++) {
-            for (int j = 1; j <= s; j++) {
-                dp[i][j] = dp[i - 1][j];
-                if(nums[i] <= j){
-                    dp[i][j] += dp[i - 1][j - nums[i]];
-                }
-            }
-        }
-        return dp[N - 1][s];
-    }
-
 
 
 }

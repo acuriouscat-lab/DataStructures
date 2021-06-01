@@ -12,15 +12,19 @@ public class Problem_0340_LongestSubstringWithAtMostKDistinctCharacters {
         }
         char[] str = s.toCharArray();
         int R = 0;
-        int[] count = new int[256];
+        // 字符出现的次数
+        int[] count = new int[26];
+        // 窗口内出现了多少种不同的字符
         int need = 0;
         int ans = 0;
         for (int i = 0; i < str.length; i++) {
+            // 双指针，找到第一个越界的位置
             while (R < str.length && (need < k || (need == k && count[str[R] - 'a'] > 0))) {
                 need = count[str[i] - 'a'] == 0 ? 1 : 0;
                 count[str[R++] - 'a']++;
             }
             ans = Math.max(ans, R - i);
+            // 左边界需要往右边移动时，左边界出窗口
             if (count[str[i] - 'a'] == 1) {
                 need--;
             }

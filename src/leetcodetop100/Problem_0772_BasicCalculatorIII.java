@@ -66,6 +66,7 @@ public class Problem_0772_BasicCalculatorIII {
     }
 
     public static void addNum(LinkedList<String> que, int num) {
+        // 判断是否为空，避免一开始就是运算符的情况：-3*4
         if (!que.isEmpty()) {
             String top = que.pollLast();
             if (top.equals("+") || top.equals("-")) {

@@ -22,7 +22,7 @@ public class Code02_ContainerWithMostWater {
         int max = 0;
         while (left < right) {
             int minHeight = h[left] < h[right] ? h[left++] : h[right--];
-            max = Math.max(max, minHeight * (right - left));
+            max = Math.max(max, minHeight * (right - left + 1));
         }
         return max;
     }

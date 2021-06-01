@@ -75,6 +75,7 @@ public class Code02_Cola {
         int preZhang = 0;
         for (int i = 0; i < qian.length && m != 0; i++) {
             // 当前的钱第一次买一瓶需要多少张
+            // 需要加上之前剩余的钱，并且向上取整   a / b  -》 (a + b - 1) / b
             int curMoneyFirstBuyOne = (x - preMoney + qian[i] - 1) / qian[i];
             if (zhang[i] >= curMoneyFirstBuyOne) {
                 giveRest(qian, zhang, i + 1, curMoneyFirstBuyOne * qian[i] + preMoney - x, 1);
@@ -86,6 +87,7 @@ public class Code02_Cola {
                 preZhang += zhang[i];
                 continue;
             }
+            // 只用当前的钱去买可乐，能够买最多的瓶数需要用的钱
             int curMoneyBuyOneColaZhang = (x + qian[i] - 1) / qian[i];
             int curMoneyBuyColas = Math.min(m, zhang[i] / curMoneyBuyOneColaZhang);
             int oneTimeRest = qian[i] * curMoneyBuyOneColaZhang - x;
@@ -99,6 +101,14 @@ public class Code02_Cola {
         return m == 0 ? puts : -1;
     }
 
+    /**
+     *
+     * @param qian
+     * @param zhang
+     * @param index index... 找零之后会多余
+     * @param onetimeRest 买一次找零的钱数
+     * @param times 买了多少次
+     */
     public static void giveRest(int[] qian, int[] zhang, int index, int onetimeRest, int times) {
         for (int i = index; i < qian.length; i++) {
             zhang[i] += (onetimeRest / qian[i]) * times;

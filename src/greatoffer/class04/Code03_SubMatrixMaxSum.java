@@ -32,7 +32,7 @@ public class Code03_SubMatrixMaxSum {
         for (int i = 0; i < arr.length; i++) {
             cur += arr[i];
             max = Math.max(max, cur);
-            cur = cur < 0 ? 0 : cur;
+            cur = Math.max(cur, 0);
         }
         return max;
     }
@@ -42,10 +42,10 @@ public class Code03_SubMatrixMaxSum {
         int M = matrix[0].length;
         int max = Integer.MIN_VALUE;
         int cur = 0;
-        int a = 0;
-        int b = 0;
-        int c = 0;
-        int d = 0;
+        int b = 0;//开始的列
+        int a = 0;//开始的行
+        int c = 0;//结束的列
+        int d = 0;//结束的行
         for (int i = 0; i < N; i++) {
             int[] s = new int[M];
             for (int j = i; j < N; j++) {

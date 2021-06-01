@@ -25,7 +25,7 @@ public class Code01_QueryHobby {
 
         }
 
-        public int query(int L,int R,int val){
+        public int query(int L, int R, int val) {
             if (!map.containsKey(val)) {
                 return 0;
             }
@@ -36,20 +36,21 @@ public class Code01_QueryHobby {
         }
 
         /**
-         *  找到 < val 最右边的位置
+         * 找到 < val 最右边的位置
+         *
          * @param list
          * @param val
          * @return
          */
-        public int countless(ArrayList<Integer> list,int val){
+        public int countless(ArrayList<Integer> list, int val) {
             int ans = -1;
             int l = 0;
             int r = list.size() - 1;
-            while(l <= r){
-                int m = (l + r ) >> 1;
-                if(list.get(m) >= val){
+            while (l <= r) {
+                int m = (l + r) >> 1;
+                if (list.get(m) >= val) {
                     r = m - 1;
-                }else{
+                } else {
                     ans = m;
                     l = m + 1;
                 }

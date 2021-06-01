@@ -25,6 +25,12 @@ public class Code03_Largest1BorderedSquare {
         return 0;
     }
 
+    /**
+     *  生成预数组
+     * @param m 原矩阵
+     * @param down 下矩阵：(i,j) 表示 (i,j) 下方有多少个连续的 1
+     * @param right 右矩阵：(i,j) 表示 (i,j) 右方方有多少个连续的 1
+     */
     public static void setBorderMap(int[][] m, int[][] down, int[][] right) {
         int r = m.length;
         int c = m[0].length;

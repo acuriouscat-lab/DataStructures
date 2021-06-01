@@ -29,8 +29,10 @@ public class Code05_MinBoat {
         }
         int L = lessR;
         int R = lessR + 1;
+        // 表示左边没有办法和右边结合的个数
         int noUsed = 0;
         while (L >= 0) {
+            // 表示左边解决掉的个数
             int solved = 0;
             while (R < N && arr[L] + arr[R] <= limit) {
                 R++;
@@ -44,8 +46,11 @@ public class Code05_MinBoat {
             }
         }
         int all = lessR + 1;
+        // 左边结合了的个数
         int used = all - noUsed;
+        // 右边没办法结合的，必须单独一艘船
         int moreUnsolved = (N - all) - used;
+        // 结合了的（一艘船） + （左边没办法和右边结合的，那么只能喝左边结合）(两人一艘【向上取整】) + 右边没办法结合的（一人一艘船）
         return used + ((noUsed + 1) >> 1) + moreUnsolved;
     }
 

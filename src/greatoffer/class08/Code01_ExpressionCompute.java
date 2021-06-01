@@ -52,7 +52,7 @@ public class Code01_ExpressionCompute {
             } else if (cur.equals("-")) {
                 add = false;
             }else{
-                num = Integer.valueOf(cur);
+                num = Integer.parseInt(cur);
                 res += add ? num : (-num);
             }
 
@@ -92,6 +92,9 @@ public class Code01_ExpressionCompute {
         System.out.println(getValue(exp));
 
         exp = "3+1*4";
+        System.out.println(getValue(exp));
+
+        exp = "(1+(4+5+2)-3)+(6+8)";
         System.out.println(getValue(exp));
 
     }
