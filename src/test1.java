@@ -47,6 +47,8 @@ public class test1 {
         int[] arr2 = { 4, 3, 4, 2, 2, 2, 4, 1, 1, 1, 3, 3, 1, 1, 1, 4, 2, 2 };
         printOddTimesNum2(arr2);
 
+        System.out.println(Integer.MAX_VALUE);
+
     }
 
 
