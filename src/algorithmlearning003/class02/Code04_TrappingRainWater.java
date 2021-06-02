@@ -71,6 +71,7 @@ public class Code04_TrappingRainWater {
         }
         return water;
     }
+
     public static int water4(int[] arr) {
         if (arr == null || arr.length < 3) {
             return 0;
@@ -82,14 +83,15 @@ public class Code04_TrappingRainWater {
         while (left <= right) {
             if (leftMax <= rightMax) {
                 ans += Math.max(0, leftMax - arr[left]);
-                leftMax = Math.max(leftMax,arr[left++]);
-            }else{
+                leftMax = Math.max(leftMax, arr[left++]);
+            } else {
                 ans += Math.max(0, rightMax - arr[right]);
                 rightMax = Math.max(rightMax, arr[right--]);
             }
         }
         return ans;
     }
+
     // for test
     public static int[] generateRandomArray(int len, int value) {
         int[] ans = new int[(int) (Math.random() * len) + 1];
@@ -116,7 +118,6 @@ public class Code04_TrappingRainWater {
         }
         System.out.println("test finish");
     }
-
 
 
 }
