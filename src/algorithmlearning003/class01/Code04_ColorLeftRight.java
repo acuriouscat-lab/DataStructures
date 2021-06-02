@@ -19,6 +19,8 @@ public class Code04_ColorLeftRight {
         int res = rAll;
         int left = 0;
         //把左边都涂成红和把右边都涂成绿色
+        // 当前来到 i 位置， left 表示把左边得 G 都涂成 R 的个数， rAll 表示把右边都涂成 G 的个数
+        // 两者相加 就是当前位置需要涂染的个数
         for (int i = 0; i < N ; i++) {
             left += str[i] == 'G' ? 1 : 0;
             rAll -= str[i] == 'R' ? 1 : 0;
