@@ -63,15 +63,17 @@ public class Code01_MorrisTraversal {
                 while (mostRight.right != null && mostRight.right != cur) {
                     mostRight = mostRight.right;
                 }
+                // 有左树的第一次
                 if (mostRight.right == null) {
                     mostRight.right = cur;
                     System.out.print(cur.value + " ");
                     cur = cur.left;
                     continue;
-                }else {
+                }else { // 有左树的第一次
                     mostRight.right = null;
                 }
             }else{
+                // 没有左树的只有第一次
                 System.out.print(cur.value + " ");
             }
             cur = cur.right;

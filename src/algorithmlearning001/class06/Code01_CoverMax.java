@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 public class Code01_CoverMax {
 
     //最长线段重合问题
+    // 找到最多有几个线段重合
     public static int maxCover1(int[][] lines) {
         if(lines == null || lines.length <2){
             return 0;
@@ -30,6 +31,7 @@ public class Code01_CoverMax {
     }
 
     //最长线段重合问题
+    // 找到最多有几个线段重合
     public static int maxCover2(int[][] m) {
         if(m == null || m.length <2){
             return 0;
