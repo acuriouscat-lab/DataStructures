@@ -66,6 +66,8 @@ public class Code06_SnakeGame {
             dp[i][0][1] = -matrix[i][0];
             max = Math.max(max, Math.max(dp[i][0][0], dp[i][0][1]));
         }
+        // 每个位置依赖 他的左边位置、左上位置和左下位置
+        // 所以遍历的顺序是列在前，行在后
         for (int j = 1; j < matrix[0].length; j++) {
             for (int i = 0; i < matrix.length; i++) {
                 int preUnuse = dp[i][j - 1][0];

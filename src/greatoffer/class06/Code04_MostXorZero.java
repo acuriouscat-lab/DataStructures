@@ -62,6 +62,7 @@ public class Code04_MostXorZero {
         }
         int N = arr.length;
         int[] dp = new int[N];
+        // key 前缀eor的总和，value -> 该总和上一次出现的位置
         HashMap<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);
         int eor = 0;

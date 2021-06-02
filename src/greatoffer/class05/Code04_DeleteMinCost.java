@@ -95,40 +95,41 @@ public class Code04_DeleteMinCost {
 
 
 
-//    // 来自学生的做法，时间复杂度O(N * M平方)
-//    // 复杂度和方法三一样，但是思路截然不同
-//    public static int minCost4(String s1, String s2) {
-//        char[] str1 = s1.toCharArray();
-//        char[] str2 = s2.toCharArray();
-//        HashMap<Character, ArrayList<Integer>> map1 = new HashMap<>();
-//        for (int i = 0; i < str1.length; i++) {
-//            ArrayList<Integer> list = map1.getOrDefault(str1[i], new ArrayList<Integer>());
-//            list.add(i);
-//            map1.put(str1[i], list);
-//        }
-//        int ans = 0;
-//        // 假设删除后的str2必以i位置开头
-//        // 那么查找i位置在str1上一共有几个，并对str1上的每个位置开始遍历
-//        // 再次遍历str2一次，看存在对应str1中i后续连续子串可容纳的最长长度
-//        for (int i = 0; i < str2.length; i++) {
-//            if (map1.containsKey(str2[i])) {
-//                ArrayList<Integer> keyList = map1.get(str2[i]);
-//                for (int j = 0; j < keyList.size(); j++) {
-//                    int cur1 = keyList.get(j) + 1;
-//                    int cur2 = i + 1;
-//                    int count = 1;
-//                    for (int k = cur2; k < str2.length && cur1 < str1.length; k++) {
-//                        if (str2[k] == str1[cur1]) {
-//                            cur1++;
-//                            count++;
-//                        }
-//                    }
-//                    ans = Math.max(ans, count);
-//                }
-//            }
-//        }
-//        return s2.length() - ans;
-//    }
+    // 时间复杂度O(N * M平方)
+    // 复杂度和方法三一样，但是思路截然不同
+    public static int minCost4(String s1, String s2) {
+        char[] str1 = s1.toCharArray();
+        char[] str2 = s2.toCharArray();
+        HashMap<Character, ArrayList<Integer>> map1 = new HashMap<>();
+        // 将 s1 中，字符出现的位置放入到 map 表中
+        for (int i = 0; i < str1.length; i++) {
+            ArrayList<Integer> list = map1.getOrDefault(str1[i], new ArrayList<Integer>());
+            list.add(i);
+            map1.put(str1[i], list);
+        }
+        int ans = 0;
+        // 假设删除后的str2必以i位置开头
+        // 那么查找i位置在str1上一共有几个，并对str1上的每个位置开始遍历
+        // 再次遍历str2一次，看存在对应str1中i后续连续子串可容纳的最长长度
+        for (int i = 0; i < str2.length; i++) {// 枚举 s2 中任意一个字符为开头的情况
+            if (map1.containsKey(str2[i])) {
+                ArrayList<Integer> keyList = map1.get(str2[i]);
+                for (int j = 0; j < keyList.size(); j++) {
+                    int cur1 = keyList.get(j) + 1;
+                    int cur2 = i + 1;
+                    int count = 1;
+                    for (int k = cur2; k < str2.length && cur1 < str1.length; k++) {
+                        if (str2[k] == str1[cur1]) {
+                            cur1++;
+                            count++;
+                        }
+                    }
+                    ans = Math.max(ans, count);
+                }
+            }
+        }
+        return s2.length() - ans;
+    }
 
     public static String generateRandomString(int l, int v) {
         int len = (int) (Math.random() * l);

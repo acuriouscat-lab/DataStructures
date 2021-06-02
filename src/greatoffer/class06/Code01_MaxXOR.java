@@ -31,6 +31,8 @@ public class Code01_MaxXOR {
 
         public Node head = new Node();
 
+        // 加入一个数
+        // 按照二进制位从高到底建立前缀树
         public void add(int num) {
             Node node = head;
             for (int i = 31; i >= 0; i--) {
@@ -42,11 +44,13 @@ public class Code01_MaxXOR {
             }
         }
 
+        // 当前数 num 和 前缀树中哪一条路径异或出来结果最大
         public int maxEor(int num) {
             Node node = head;
             int ans = 0;
             for (int i = 31; i >= 0; i--) {
                 int path = (num >> i) & 1;
+                // 如果是符号位，那么取相同
                 int best = (i == 31 ? path : (path ^ 1));
                 best = node.nexts[best] == null ? (best ^ 1) : best;
                 ans |= ((best ^ path) << i);

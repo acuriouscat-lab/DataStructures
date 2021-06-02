@@ -33,8 +33,9 @@ public class Code01_MaxAndValue {
         int ans = 0;
         for (int bit = 30; bit >= 0; bit--) {
             int i = 0;
-            int temp = M;
+            int temp = M;// 右边界
             while (i < M) {
+                // 判断当前 bit 位 有多少个 1 不为 1 的话 交换到右边界右侧
                 if (((arr[i] >> bit) & 1) == 0) {
                     swap(arr, i, --M);
                 }else{
@@ -46,7 +47,7 @@ public class Code01_MaxAndValue {
             }
             if (M < 2) {
                 M = temp;
-            }else{
+            }else{ // 大于 2 说明当前 bit 位，一定为 0
                 ans |= (1 << bit);
             }
         }
