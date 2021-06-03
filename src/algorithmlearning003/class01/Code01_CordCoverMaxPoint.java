@@ -12,13 +12,14 @@ public class Code01_CordCoverMaxPoint {
         for (int i = 0; i < arr.length; i++) {
             //找到大于等于等于arr[i] - L 的最左位置 即 能盖住的点
             int nearestIndex = nearestIndex(arr, i, arr[i] - L);
-            res = Math.max(res,i - nearestIndex + 1);
+            res = Math.max(res, i - nearestIndex + 1);
         }
         return res;
     }
 
     /**
-     *  找到大于等于该数的最左位置
+     * 找到大于等于该数的最左位置
+     *
      * @param arr
      * @param R
      * @param value
@@ -29,10 +30,10 @@ public class Code01_CordCoverMaxPoint {
         int index = R;
         while (L <= R) {
             int mid = L + ((R - L) >> 1);
-            if(arr[mid] >= value){
-                R = mid -1;
+            if (arr[mid] >= value) {
+                R = mid - 1;
                 index = mid;
-            }else{
+            } else {
                 L = mid + 1;
             }
         }
@@ -46,7 +47,7 @@ public class Code01_CordCoverMaxPoint {
         int N = arr.length;
         int res = 0;
         //双指针
-        while(left < N){
+        while (left < N) {
             //如果还在绳子长度内 右边界继续移动
             while (R < N && arr[R] - arr[left] <= L) {
                 R++;
@@ -56,6 +57,7 @@ public class Code01_CordCoverMaxPoint {
         }
         return res;
     }
+
     // for test
     public static int test(int[] arr, int L) {
         int max = 0;

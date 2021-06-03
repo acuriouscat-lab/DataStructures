@@ -19,13 +19,13 @@ public class Code03_LongestLessSumSubArrayLength {
         int N = arr.length;
         int[] minSum = new int[N];
         int[] minSumEnd = new int[N];
-        minSum[N-1] = arr[N-1];//以i开头的最小累加和是多少
-        minSumEnd[N-1] = N -1;
+        minSum[N - 1] = arr[N - 1];//以i开头的最小累加和是多少
+        minSumEnd[N - 1] = N - 1;//当前最小累加和的右边界
         for (int i = N - 2; i >= 0; i--) {
-            if(minSum[i+1] <= 0) {
+            if (minSum[i + 1] <= 0) {
                 minSum[i] = minSum[i + 1] + arr[i];
-                minSumEnd[i] = minSumEnd[i+1];
-            }else{
+                minSumEnd[i] = minSumEnd[i + 1];
+            } else {
                 minSum[i] = arr[i];
                 minSumEnd[i] = i;
             }
@@ -41,14 +41,14 @@ public class Code03_LongestLessSumSubArrayLength {
             // 1) 如果以i开头的情况下，累加和<=k的最长子数组是arr[i..end-1]，看看这个子数组长度能不能更新res；
             // 2) 如果以i开头的情况下，累加和<=k的最长子数组比arr[i..end-1]短，更新还是不更新res都不会影响最终结果；
             while (end < N && sum + minSum[end] <= K) {
-                sum+= minSum[end];
-                end = minSumEnd[end] +1;
+                sum += minSum[end];
+                end = minSumEnd[end] + 1;
             }
             len = Math.max(len, end - i);
-            if(end > i ){//窗口还有数
+            if (end > i) {//窗口还有数
                 sum -= arr[i];
-            }else{//窗口已经没有数了
-                end = i +1;
+            } else {//窗口已经没有数了
+                end = i + 1;
             }
         }
         return len;
@@ -112,10 +112,6 @@ public class Code03_LongestLessSumSubArrayLength {
         }
         System.out.println("test finish");
     }
-
-
-
-
 
 
 }

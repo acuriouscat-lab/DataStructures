@@ -13,7 +13,7 @@ public class Code03_JumpGame {
         int step = 0; // 跳了多少步
         int cur = 0; // step步内，右边界
         int next = 0;// step+1步内，右边界
-
+        // next 一直更新，cur 只在当前来到位置 i 小于当前 cur 时更新成 next,代表此时多跳了一步 step++
         for (int i = 0; i < arr.length; i++) {
             if (cur < i) {
                 step ++;

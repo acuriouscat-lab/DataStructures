@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Code04_LeastRecentlyUsedCache {
 
-    //
+    // 支持双向的节点
     public static class Node<K, V> {
         public K key;
         public V value;
@@ -17,28 +17,31 @@ public class Code04_LeastRecentlyUsedCache {
             this.value = value;
         }
     }
+
     // 双向链表
     // 从head到tail所有节点都是串好的
-    public static class NodeDoubleLinkedList<K,V>{
-        Node<K,V> head;
-        Node<K,V> tail;
-        public NodeDoubleLinkedList(){
+    public static class NodeDoubleLinkedList<K, V> {
+        Node<K, V> head;
+        Node<K, V> tail;
+
+        public NodeDoubleLinkedList() {
             head = null;
             tail = null;
         }
 
+        // 增加节点到双向链表中
+        // 新增节点默认为最新 -> 加入到末尾处
         public void addNode(Node<K, V> node) {
             if (node == null) {
                 return;
             }
-            if(head == null){
+            if (head == null) {
                 head = node;
-                tail = node;
-            }else{
+            } else {
                 tail.next = node;
                 node.last = tail;
-                tail = node;
             }
+            tail = node;
         }
 
         // 潜台词 ： 双向链表上一定有这个node
@@ -52,7 +55,7 @@ public class Code04_LeastRecentlyUsedCache {
             if (head == node) {//头部
                 head = node.next;
                 head.last = null;
-            }else{//中间的节点
+            } else {//中间的节点
                 node.next.last = node.last;
                 node.last.next = node.next;
             }
@@ -63,16 +66,16 @@ public class Code04_LeastRecentlyUsedCache {
             tail = node;
         }
 
-
-        public Node<K,V> removeHead(){
+        // 删除最久没有使用过的节点 -> 删除当前的头部节点
+        public Node<K, V> removeHead() {
             if (head == null) {
                 return null;
             }
-            Node<K,V> res = this.head;
+            Node<K, V> res = this.head;
             if (head == tail) {
                 head = null;
                 tail = null;
-            }else{
+            } else {
                 head = res.next;
                 head.last = null;
                 res.next = null;
@@ -81,7 +84,7 @@ public class Code04_LeastRecentlyUsedCache {
         }
     }
 
-
+    // 支持 LRU 缓存策略的 结构
     public static class MyCache<K, V> {
         public NodeDoubleLinkedList<K, V> nodelist;
         public Map<K, Node<K, V>> nodeMap;
@@ -98,7 +101,7 @@ public class Code04_LeastRecentlyUsedCache {
                 Node<K, V> node = nodeMap.get(key);
                 node.value = val;
                 nodelist.moveNodeToTail(node);
-            }else{
+            } else {
                 Node<K, V> node = new Node<>(key, val);
                 nodeMap.put(key, node);
                 nodelist.addNode(node);

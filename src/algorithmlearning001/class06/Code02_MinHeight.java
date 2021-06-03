@@ -15,12 +15,12 @@ public class Code02_MinHeight {
     }
 
     private static int minHeight1(Node head) {
-        if( head == null) return 0;
+        if (head == null) return 0;
 
         return p(head);
     }
 
-    private static int p(Node x){
+    private static int p(Node x) {
         if (x.left == null && x.right == null) {
             return 1;
         }
@@ -61,15 +61,15 @@ public class Code02_MinHeight {
                     mostRight.right = cur;
                     cur = cur.left;
                     continue;
-                }else{ // 第二次到达
+                } else { // 第二次到达
                     if (mostRight.left == null) {
-                        minHeight = Math.min(minHeight,curLevel);
+                        minHeight = Math.min(minHeight, curLevel);
                     }
                     mostRight.right = null;
                     curLevel -= leftHeight;
                 }
 
-            }else{// 只有一次到达
+            } else {// 只有一次到达
                 curLevel++;
             }
             cur = cur.right;
@@ -80,11 +80,12 @@ public class Code02_MinHeight {
             finalHeight++;
             cur = cur.right;
         }
-        if (cur.left == null ) {
+        if (cur.left == null) {
             minHeight = Math.min(minHeight, finalHeight);
         }
         return minHeight;
     }
+
     // for test
     public static Node generateRandomBST(int maxLevel, int maxValue) {
         return generate(1, maxLevel, maxValue);

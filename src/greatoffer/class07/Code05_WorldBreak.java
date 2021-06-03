@@ -31,6 +31,7 @@ public class Code05_WorldBreak {
         }
         HashSet<String> map = new HashSet<>(Arrays.asList(arr));
         int N = str.length();
+        // dp[i] 表示 str 以 i 为开头，arr 中能有几种方法组成 str 以 i 为开头
         int[] dp = new int[N + 1];
         dp[N] = 1;
         for (int i = N - 1; i >= 0; i--) {
@@ -64,6 +65,7 @@ public class Code05_WorldBreak {
             return 0;
         }
         Node root = new Node();
+        // 建立前缀树 每个 str 对应的前缀树节点的末尾的 end 为 true 标识字符串的结束
         for (String str : arr) {
             char[] chs = str.toCharArray();
             Node node = root;

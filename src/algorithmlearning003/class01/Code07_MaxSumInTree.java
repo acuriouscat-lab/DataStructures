@@ -24,7 +24,7 @@ public class Code07_MaxSumInTree {
         return maxSum;
     }
 
-    public static void p(Node x , int sum) {
+    public static void p(Node x, int sum) {
         if (x.left == null && x.right == null) {
             maxSum = Math.max(maxSum, x.value + sum);
             return;
@@ -60,7 +60,7 @@ public class Code07_MaxSumInTree {
     }
 
     //2）路径可以从任何节点出发，但必须往下走到达任何节点，返回最大路径和
-    public static int maxSum2(Node head){
+    public static int maxSum2(Node head) {
         if (head == null) {
             return 0;
         }
@@ -69,7 +69,7 @@ public class Code07_MaxSumInTree {
 
     // 1）X无关的时候， 1， 左树上的整体最大路径和 2， 右树上的整体最大路径和
     // 2) X有关的时候 3， x自己 4， x往左走 5，x往右走
-    public static Info process3(Node x){
+    public static Info process3(Node x) {
         if (x == null) {
             return null;
         }
@@ -90,13 +90,15 @@ public class Code07_MaxSumInTree {
         }
         int all = Math.max(Math.max(Math.max(p1, p2), p3), Math.max(p4, p5));
         int from = Math.max(Math.max(p3, p2), p5);
-        return new Info(all,from);
+        return new Info(all, from);
 
     }
-    public static class Info{
+
+    public static class Info {
         public int allTreeMaxSum;
         public int fromHeadMaxSum;
-        public Info(int allTreeMaxSum, int fromHeadMaxSum){
+
+        public Info(int allTreeMaxSum, int fromHeadMaxSum) {
             this.allTreeMaxSum = allTreeMaxSum;
             this.fromHeadMaxSum = fromHeadMaxSum;
         }

@@ -18,13 +18,13 @@ public class Code02_EditCost {
 				    相等： i-1 === j -1
 				    不相等： i - 1 == j -1   + rc
 			str1 i-1 变成 str2 j
-                      i-1 == j  + ic
+                      i == j-1  + ic
 
 		不保留
 			i-1 位置 + dc
 	*/
-    public static int minCost1(String str1,String str2,int ic,int dc,int rc){
-        if(str1 == null || str2 == null){
+    public static int minCost1(String str1, String str2, int ic, int dc, int rc) {
+        if (str1 == null || str2 == null) {
             return 0;
         }
         char[] chs1 = str1.toCharArray();
@@ -33,24 +33,24 @@ public class Code02_EditCost {
         int col = chs2.length + 1;
         //str1 --> str2 以 str1 为行 str2 为列 样本对应模型
         int[][] dp = new int[row][col];
-        for(int i = 1; i < col; i++){
+        for (int i = 1; i < col; i++) {
             dp[0][i] = i * ic;
         }
-        for(int i = 1; i < row; i++){
+        for (int i = 1; i < row; i++) {
             dp[i][0] = i * dc;
         }
 
-        for(int i = 1; i < row;i++){
-            for(int j = 1; j < col; j++){
-                if(chs1[i - 1] == chs2[j - 1]){//保留
+        for (int i = 1; i < row; i++) {
+            for (int j = 1; j < col; j++) {
+                if (chs1[i - 1] == chs2[j - 1]) {//保留
                     dp[i][j] = dp[i - 1][j - 1];
-                }else{//保留
+                } else {//保留
                     dp[i][j] = dp[i - 1][j - 1] + rc;
                 }
                 //保留i位置  让 i ====> j -1 再添加一个增加的代价
-                dp[i][j] = Math.min(dp[i][j],dp[i][j - 1] + ic);
+                dp[i][j] = Math.min(dp[i][j], dp[i][j - 1] + ic);
                 //不保留i 位置  让i - 1 ===> j  再添加一个删除的代价
-                dp[i][j] = Math.min(dp[i][j],dp[i - 1][j] + dc);
+                dp[i][j] = Math.min(dp[i][j], dp[i - 1][j] + dc);
             }
         }
         return dp[row - 1][col - 1];

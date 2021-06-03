@@ -9,7 +9,7 @@ public class Code03_ParenthesesDeep {
     //问题一：怎么判断一个括号字符串有效？
     //问题二：如果一个括号字符串无效，返回至少填几个字符能让其整体有效
 
-    public static boolean isVaild(char[] str) {
+    public static boolean isValid(char[] str) {
         if (str == null || str.length == 0) {
             return false;
         }
@@ -30,9 +30,9 @@ public class Code03_ParenthesesDeep {
     //  dp[i]  以i结尾的最长有小括号为多少？
     //从左往右的尝试模型
     /*
-            当遇到右括号的时候才有可能是有效的括号
-                    遇到右括号的时候
-                    ‘   调到上一个需要判断的位置
+    当遇到右括号的时候才有可能是有效的括号
+    遇到右括号的时候
+    ‘   调到上一个需要判断的位置
      */
     public static int maxLength(String s) {
         if (s == null || s.length() < 2) return 0;
@@ -56,7 +56,7 @@ public class Code03_ParenthesesDeep {
     //在一个有效的括号字符串中，判断括号的最大深度
     private static int deep(String s) {
         char[] str = s.toCharArray();
-        if (!isVaild(str)) {
+        if (!isValid(str)) {
             return 0;
         }
         int res = 0;

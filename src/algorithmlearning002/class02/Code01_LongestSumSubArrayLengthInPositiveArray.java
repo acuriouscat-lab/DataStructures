@@ -20,15 +20,15 @@ public class Code01_LongestSumSubArrayLengthInPositiveArray {
         int right = 0;
         int sum = arr[0];
         int len = 0;
-        while(right < arr.length){
+        while (right < arr.length) {
             if (sum == K) {
-                len = Math.max(len,right - left + 1);
+                len = Math.max(len, right - left + 1);
                 sum -= arr[left++];
             } else if (sum > K) {
                 sum -= arr[left++];
             } else {
-                right ++;
-                if(right == arr.length) break;
+                right++;
+                if (right == arr.length) break;
                 sum += arr[right];
             }
         }
@@ -95,7 +95,6 @@ public class Code01_LongestSumSubArrayLengthInPositiveArray {
         }
         System.out.println("test end");
     }
-
 
 
 }

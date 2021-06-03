@@ -91,7 +91,7 @@ public class Code04_LIS {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 2, 1, 5, 3, 6, 4, 8, 9, 7 };
+        int[] arr = {2, 1, 5, 3, 6, 4, 8, 9, 7};
         printArray(arr);
         printArray(lis1(arr));
         printArray(lis2(arr));

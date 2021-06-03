@@ -35,7 +35,7 @@ public class Code01_GetFolderTree {
         printProcess(head, 0);
     }
 
-
+    // 每一级目录都创建对应的节点表示
     public static  Node generateNode(String[] folderPath) {
         Node head = new Node("");//系统根目录
         for (String s : folderPath) {

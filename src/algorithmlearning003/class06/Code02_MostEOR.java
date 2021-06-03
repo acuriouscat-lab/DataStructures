@@ -13,8 +13,9 @@ public class Code02_MostEOR {
         //  key 异或和
         // 出现当前异或合时 的下标
         HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1);
+        map.put(0, -1);// 添加来判断第一次出现0的位置
         int eor = 0;
+        // dp[i] 表示 0...i 能够划分出来的异或区域最多的个数
         int[] dp = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
             eor ^= arr[i];

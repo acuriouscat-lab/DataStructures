@@ -18,11 +18,10 @@ public class Code02_BSTtoDoubleLinkedList {
         if (head == null) {
             return null;
         }
-
-        return null;
+        return process(head).start;
     }
 
-    public static class Info{
+    public static class Info {
         Node start;
         Node end;
 
@@ -39,19 +38,18 @@ public class Code02_BSTtoDoubleLinkedList {
             return null;
         }
         Info leftInfo = process(node.left);
-        Info righrInfo = process(node.right);
+        Info rightInfo = process(node.right);
 
         if (leftInfo != null) {
             leftInfo.end.right = node;
         }
-        if (righrInfo != null) {
-            righrInfo.start.left = node;
+        if (rightInfo != null) {
+            rightInfo.start.left = node;
         }
 
         return new Info(
-                leftInfo.start != null ? leftInfo.start : node
-                , righrInfo.end != null ? righrInfo.end : node
-        );
+                leftInfo != null ? leftInfo.start : node
+                , rightInfo != null ? rightInfo.end : node);
 
     }
 

@@ -37,6 +37,7 @@ public class Code05_TrappingRainWaterII {
         int c = arr[0].length;
         //小根堆
         PriorityQueue<Node> queue = new PriorityQueue<Node>(new NodeComparator());
+        // 避免重复进入
         boolean[][] isEntered = new boolean[r][c];
         //将四周的点封装成node结点到小根堆中
         // 并且在isEntered中标记以进入
@@ -63,6 +64,7 @@ public class Code05_TrappingRainWaterII {
             int row = poll.row;
             int col = poll.col;
             max = Math.max(max, poll.value);
+            // 将周围的点加入
             if (row > 0 && !isEntered[row - 1][col]) {
                 water += Math.max(0, max - arr[row - 1][col]);
                 queue.add(new Node(arr[row - 1][col], row - 1, col));
@@ -94,7 +96,7 @@ public class Code05_TrappingRainWaterII {
         int[][] res = new int[rowSize][colSize];
         for (int i = 0; i != rowSize; i++) {
             for (int j = 0; j != colSize; j++) {
-                res[i][j] = (int) (Math.random() * 6)  ;
+                res[i][j] = (int) (Math.random() * 6);
             }
         }
         return res;
@@ -110,7 +112,7 @@ public class Code05_TrappingRainWaterII {
     }
 
     public static void main(String[] args) {
-        int[][] matrix = generateRandom01Matrix(7, 8);
+        int[][] matrix = generateRandom01Matrix(3, 4);
         printMatrix(matrix);
         System.out.println(trapRainWater(matrix));
     }

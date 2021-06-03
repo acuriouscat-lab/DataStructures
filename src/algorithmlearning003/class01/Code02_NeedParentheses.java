@@ -16,27 +16,28 @@ public class Code02_NeedParentheses {
                 如果count == 0  ==>   左右括号数量相同
                 否则need++      右括号比较多
      */
-    public static int needParentheses(String s){
+    public static int needParentheses(String s) {
         if (s == null || s.length() == 0) {
             return 0;
         }
         int count = 0;//需要几个右括号
         int need = 0;//需要几个左括号
         char[] str = s.toCharArray();
+        // 遇到左括号的时候 count++  -> count 左括号多的个数
+        // 遇到右括号的时候 count--  -> count 如果还不为0直接减，如果为0了，说明当前右括号多了 need++  -> need 右括号多的个数
         for (int i = 0; i < str.length; i++) {
-            if(str[i] == '('){
-                count ++;
-            }else{
-                if(count == 0){//当右括号比左括号多的时候
-                    need ++;
-                }else{
-                    count --;
+            if (str[i] == '(') {
+                count++;
+            } else {
+                if (count == 0) {//当右括号比左括号多的时候
+                    need++;
+                } else {
+                    count--;
                 }
             }
         }
         return count + need;
     }
-
 
 
 }

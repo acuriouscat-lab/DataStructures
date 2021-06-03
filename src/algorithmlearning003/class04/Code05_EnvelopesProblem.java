@@ -36,7 +36,7 @@ public class Code05_EnvelopesProblem {
         Envelope[] envelopes = getSortedEnvelopes(matrix);
         int[] ends = new int[matrix.length];
         ends[0] = envelopes[0].h;
-        int right = 0;
+        int right = 0;//有效区的右边界
         int l = 0;
         int r = 0;
         int m = 0;

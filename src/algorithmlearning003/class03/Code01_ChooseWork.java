@@ -78,8 +78,6 @@ public class Code01_ChooseWork {
         map.remove(9);
 
 
-
-
         System.out.println(map.firstKey());
         System.out.println(map.lastKey());
         // <= num 离num最近的key

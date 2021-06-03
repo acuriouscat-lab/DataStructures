@@ -27,6 +27,7 @@ public class Code01_ExpressionCompute {
             if (str[i] >= '0' && str[i] <= '9') {
                 cur = cur * 10 + str[i++] - '0';
             }else if(str[i] != '('){
+                // 如果遇到符号了，那么将该符号之前的数 压入到队列（如果是乘除法，先计算 计算完后将结果压入）
                 addNum(queue, cur);
                 queue.addLast(String.valueOf(str[i++]));
                 cur = 0;
@@ -36,6 +37,7 @@ public class Code01_ExpressionCompute {
                 cur = bra[0];
             }
         }
+        // 末尾的数 需要在单独进行压入
         addNum(queue, cur);
         return new int[]{getNum(queue), i};
     }

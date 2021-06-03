@@ -2,7 +2,7 @@ package greatoffer.class07;
 
 public class Code02_MinCameraCover {
 
-    // 本题测试链接 : https://leetcode.com/problems/binary-tree-cameras/
+    // 本题测试链接 : https://leetcode-cn.com/problems/binary-tree-cameras/
 
     public static class TreeNode {
         public int value;

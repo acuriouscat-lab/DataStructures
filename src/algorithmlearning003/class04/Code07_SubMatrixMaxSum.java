@@ -24,7 +24,7 @@ public class Code07_SubMatrixMaxSum {
                     s[k] += m[j][k];
                     cur += s[k];
                     max = Math.max(max, cur);
-                    cur = cur < 0 ? 0 : cur;
+                    cur = Math.max(cur, 0);
                 }
             }
         }
@@ -33,13 +33,12 @@ public class Code07_SubMatrixMaxSum {
     }
 
     public static void main(String[] args) {
-        int[][] matrix = { { -90, 48, 78 }, { 64, -40, 64 }, { -81, -7, 66 } };
+        int[][] matrix = {{-90, 48, 78}, {64, -40, 64}, {-81, -7, 66}};
         System.out.println(maxSum(matrix));
-        int[][] matrix2 = { { -1, 1, 1 }, { 2, -2, 2 }, { -1, -1, 1 } };
+        int[][] matrix2 = {{-1, 1, 1}, {2, -2, 2}, {-1, -1, 1}};
         System.out.println(maxSum(matrix2));
 
     }
-
 
 
 }

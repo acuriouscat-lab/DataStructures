@@ -16,7 +16,7 @@ public class Code06_PrintUniquePairAndTriad {
                 r--;
             } else if (arr[l] + arr[r] < k) {
                 l++;
-            }else{
+            } else {
                 if (l == 0 || arr[l] != arr[l - 1]) {
                     System.out.println(arr[l] + "   " + arr[r]);
                     l++;
@@ -25,6 +25,7 @@ public class Code06_PrintUniquePairAndTriad {
         }
 
     }
+
     //2）返回累加和为aim的，所有不同三元组
     public static void printUniqueTriad(int[] arr, int k) {
         if (arr == null || arr.length < 3) {
@@ -63,7 +64,7 @@ public class Code06_PrintUniquePairAndTriad {
 
     public static void main(String[] args) {
         int sum = 10;
-        int[] arr1 = { -8, -4, -3, 0, 1, 2, 4, 5, 8, 9 };
+        int[] arr1 = {-8, -4, -3, 0, 1, 2, 4, 5, 8, 9};
         printArray(arr1);
         System.out.println("====");
         printUniquePair(arr1, sum);

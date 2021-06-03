@@ -49,9 +49,10 @@ public class Code03_PreAndInArrayToPosArray {
             }
         }
         int leftSize = mid - inStart;
-        process1(pre, preStart + 1, preStart + leftSize, in, inStart, mid - 1, pos, start,start + leftSize - 1);
+        process1(pre, preStart + 1, preStart + leftSize, in, inStart, mid - 1, pos, start, start + leftSize - 1);
         process1(pre, preStart + leftSize + 1, preEnd, in, mid + 1, inEnd, pos, start + leftSize, end - 1);
     }
+
     public static int[] preInToPos2(int[] pre, int[] in) {
         if (pre == null || in == null || pre.length != in.length) {
             return null;

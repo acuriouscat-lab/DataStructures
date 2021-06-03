@@ -89,7 +89,7 @@ public class Code05_FindWordInMatrix {
         boolean down = i < dp.length - 1 && dp[i + 1][j][k - 1];
         boolean up = i > 0 && dp[i - 1][j][k - 1];
         boolean left = j > 0 && dp[i][j - 1][k - 1];
-        boolean right = j < dp[0].length -1 && dp[i][j + 1][k - 1];
+        boolean right = j < dp[0].length - 1 && dp[i][j + 1][k - 1];
         return down || up || left || right;
     }
 
@@ -134,9 +134,9 @@ public class Code05_FindWordInMatrix {
     }
 
     public static void main(String[] args) {
-        char[][] m = { { 'a', 'b', 'z' },
-                    { 'c', 'd', 'o' },
-                    { 'f', 'e', 'o' }, };
+        char[][] m = {{'a', 'b', 'z'},
+                {'c', 'd', 'o'},
+                {'f', 'e', 'o'},};
         String word1 = "zoooz";
         String word2 = "zoo";
         // 可以走重复路的设定

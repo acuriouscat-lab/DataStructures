@@ -12,7 +12,7 @@ public class Code01_DeleteMinCost {
     // 比如 s1 = "abcde"，s2 = "axbc"
     // 返回 1
 
-    // 解法一，来自群的解法里：
+
     // 求出str2所有的子序列，然后按照长度排序，长度大的排在前面。
     // 然后考察哪个子序列字符串和s1的某个子串相等(KMP)，答案就出来了。
     // 分析：
@@ -23,7 +23,7 @@ public class Code01_DeleteMinCost {
         process(s2.toCharArray(), 0, "", s2Subs);
         s2Subs.sort(new LenComp());
         for (String str : s2Subs) {
-            if (s1.indexOf(str) != -1) { // indexOf底层和KMP算法代价几乎一样，也可以用KMP代替
+            if (s1.contains(str)) { // indexOf底层和KMP算法代价几乎一样，也可以用KMP代替
                 return s2.length() - str.length();
             }
         }
@@ -51,7 +51,6 @@ public class Code01_DeleteMinCost {
     //比如 s1 = "abcde"，s2 = "axbc"
     //返回1。s2删掉'x'就是s1的子串了。
     // 解法二
-    // 我的方法，看的时间比较短，希望同学们积极反馈
     // 生成所有s1的子串
     // 然后考察每个子串和s2的编辑距离(假设编辑距离只有删除动作且删除一个字符的代价为1)
     // 如果s1的长度较小，s2长度较大，这个方法比较合适

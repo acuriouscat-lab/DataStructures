@@ -10,17 +10,30 @@ public class Code05_MaxOneBorderSize {
     //01111
     //01011
     //其中边框全是1的最大正方形的大小为4*4，所以返回4。
+    public static int getMaxSize(int[][] m) {
+        int[][] right = new int[m.length][m[0].length];//以i j 为点的右边有几个连续的1
+        int[][] down = new int[m.length][m[0].length];//以i j为点的下面有几个连续的1
+        setBoardMap(m, right, down);
+        //以size 为边长的正方形如果有的话  就返回
+        for (int size = Math.min(m.length, m[0].length); size != 0; size--) {
+            if (hasSizeOfBorder(size, right, down)) {
+                return size;
+            }
+        }
+        return 0;
+    }
+
     public static void setBoardMap(int[][] m, int[][] right, int[][] down) {
         int r = m.length;
         int c = m[0].length;
         if (m[r - 1][c - 1] == 1) {
-            right[r - 1][c -1] = 1;
-            down[r - 1][c -1] = 1;
+            right[r - 1][c - 1] = 1;
+            down[r - 1][c - 1] = 1;
         }
         //最后一列
         for (int i = r - 2; i != -1; i--) {
             if (m[i][c - 1] == 1) {
-                right[i][c-1] = 1;
+                right[i][c - 1] = 1;
                 down[i][c - 1] = down[i + 1][c - 1] + 1;
             }
         }
@@ -35,7 +48,7 @@ public class Code05_MaxOneBorderSize {
         for (int i = r - 2; i != -1; i--) {
             for (int j = c - 2; j != -1; j--) {
                 if (m[i][j] == 1) {
-                    right[i][j] = right[i][j +1] + 1;
+                    right[i][j] = right[i][j + 1] + 1;
                     down[i][j] = down[i + 1][j] + 1;
                 }
             }
@@ -43,18 +56,6 @@ public class Code05_MaxOneBorderSize {
 
     }
 
-    public static int getMaxSize(int[][] m) {
-        int[][] right = new int[m.length][m[0].length];//以i j 为点的右边有几个连续的1
-        int[][] down = new int[m.length][m[0].length];//以i j为点的下面有几个连续的1
-        setBoardMap(m,right,down);
-        //以size 为边长的正方形如果有的话  就返回
-        for (int size = Math.min(m.length, m[0].length); size != 0; size--) {
-            if (hasSizeOfBorder(size, right, down)) {
-                return size;
-            }
-        }
-        return 0;
-    }
 
     public static boolean hasSizeOfBorder(int size, int[][] right, int[][] down) {
         for (int i = 0; i < right.length - size + 1; i++) {
@@ -92,7 +93,6 @@ public class Code05_MaxOneBorderSize {
         printMatrix(matrix);
         System.out.println(getMaxSize(matrix));
     }
-
 
 
 }

@@ -19,6 +19,7 @@ public class Code05_Split4Parts {
         if (arr == null || arr.length < 7) {
             return false;
         }
+        // map 记录当前位置之前的累加和（不包含当前位置)
         Map<Integer, Integer> map = new HashMap<>();
         int sum = arr[0];
         for (int i = 1; i < arr.length; i++) {
@@ -27,13 +28,15 @@ public class Code05_Split4Parts {
         }
         // 第一刀左侧的位置
         int lSum = arr[0];
-        for (int l = 1; l < arr.length - 5; l++) {
+        // lSum  |  lSum |  lSum | lSum
+        //       l      s2     s3
+        for (int l = 1; l < arr.length - 5; l++) { // l 是第一刀的位置
             int nextSum = 2 * lSum + arr[l];
             if(map.containsKey(nextSum)){
-                int s2 = map.get(nextSum);
+                int s2 = map.get(nextSum); // s2 为第二道的位置
                 nextSum += lSum + arr[s2];
                 if(map.containsKey(nextSum)){
-                    int s3 = map.get(nextSum);
+                    int s3 = map.get(nextSum); //s3 为第三刀的位置
                     if(nextSum + arr[s3] + lSum == sum){
                         return true;
                     }
@@ -61,12 +64,12 @@ public class Code05_Split4Parts {
             set.add(String.valueOf(leftSum) + "_" + String.valueOf(sum - leftSum - arr[i]));
             leftSum += arr[i];
         }
-        int l = 1;
-        int lsum = arr[0];
-        int r = arr.length - 2;
-        int rsum = arr[arr.length - 1];
+        int l = 1;//第一刀的位置
+        int lsum = arr[0];// 第一刀左边的累加和
+        int r = arr.length - 2;//第三刀的位置
+        int rsum = arr[arr.length - 1];//第三刀右边的累加和
         while (l < r - 3) {
-            if (lsum == rsum) {
+            if (lsum == rsum) { //如果两个相等，那么去找第二刀是否存在
                 String lkey = String.valueOf(lsum * 2 + arr[l]);
                 String rkey = String.valueOf(rsum * 2 + arr[r]);
                 if (set.contains(lkey + "_" + rkey)) {
