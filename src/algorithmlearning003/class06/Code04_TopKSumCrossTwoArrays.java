@@ -8,7 +8,7 @@ public class Code04_TopKSumCrossTwoArrays {
 
     //给定两个有序数组arr1和arr2，再给定一个正数K
     //求两个数累加和最大的前K个，两个数必须分别来自arr1和arr2
-    public static class Node{
+    public static class Node {
 
         int index1;
         int index2;
@@ -40,17 +40,18 @@ public class Code04_TopKSumCrossTwoArrays {
 
         int[] res = new int[topk];
 
+        // node 节点包含 index1 和 index2 信息 以及当前的和， 堆按照累加和组织的大根堆
         PriorityQueue<Node> queue = new PriorityQueue<>(new NodeComparator());
 
         int index1 = arr1.length - 1;
         int index2 = arr2.length - 1;
 
+        // 使用 set[i][j] 表示 arr1[i] 和 arr[j] 这个组合是否已经统计
         boolean[][] set = new boolean[arr1.length][arr2.length];
         queue.add(new Node(index1, index2, arr1[index1] + arr2[index2]));
         set[index1][index2] = true;
 
         int resIndex = 0;
-
 
 
         while (topk != resIndex) {
@@ -73,7 +74,6 @@ public class Code04_TopKSumCrossTwoArrays {
         }
 
         return res;
-
 
 
     }
@@ -144,8 +144,6 @@ public class Code04_TopKSumCrossTwoArrays {
         System.out.println(isEqual(res, absolutelyRight));
 
     }
-
-
 
 
 }

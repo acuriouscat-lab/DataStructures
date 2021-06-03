@@ -24,11 +24,12 @@ public class Code07_TopKTimesRealTime {
             times = t;
         }
     }
-    public static class TopKRecord{
+
+    public static class TopKRecord {
         private Node[] heap;
         private int heapsize;
-        private HashMap<String,Node> strNodeMap;
-        private HashMap<Node,Integer> nodeIndexMap;
+        private HashMap<String, Node> strNodeMap;
+        private HashMap<Node, Integer> nodeIndexMap;
 
         public TopKRecord(int topK) {
             heap = new Node[topK];
@@ -43,9 +44,9 @@ public class Code07_TopKTimesRealTime {
                 curNode = new Node(str, 1);
                 strNodeMap.put(str, curNode);
                 nodeIndexMap.put(curNode, -1);
-            }else{
+            } else {
                 curNode = strNodeMap.get(str);
-                curNode.times ++;
+                curNode.times++;
                 preIndex = nodeIndexMap.get(curNode);
             }
 
@@ -57,15 +58,16 @@ public class Code07_TopKTimesRealTime {
                         heap[0] = curNode;
                         heapify(0, heapsize);
                     }
-                }else{// 堆没有满
+                } else {// 堆没有满
                     nodeIndexMap.put(curNode, heapsize);
                     heap[heapsize] = curNode;
                     heapInsert(heapsize++);
                 }
-            }else{ // str已经在堆上了
-                heapify(preIndex,heapsize);
+            } else { // str已经在堆上了
+                heapify(preIndex, heapsize);
             }
         }
+
         public void printTopK() {
             System.out.println("TOP: ");
             for (int i = 0; i != heap.length; i++) {
@@ -83,11 +85,12 @@ public class Code07_TopKTimesRealTime {
                 if (heap[index].times < heap[parent].times) {
                     swap(index, parent);
                     index = parent;
-                }else{
+                } else {
                     break;
                 }
             }
         }
+
         private void heapify(int index, int heapsize) {
             int leftIndex = index * 2 + 1;
             int rightIndex = index * 2 + 2;
@@ -101,7 +104,7 @@ public class Code07_TopKTimesRealTime {
                 }
                 if (smallest != index) {
                     swap(smallest, index);
-                }else{
+                } else {
                     break;
                 }
                 index = smallest;

@@ -28,6 +28,7 @@ public class Code07_PMinParts {
             }
         }
         // 从左往右的尝试模型
+        // dp[i] 表示 i.... 需要至少切割几刀能够划分出的回文串长度为多少
         int[] dp2 = new int[l + 1];
         for (int i = 0; i < l; i++) {
             dp2[i] = Integer.MAX_VALUE;
