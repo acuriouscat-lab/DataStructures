@@ -60,7 +60,7 @@ public class Code02_CountFiles {
 
     public static void main(String[] args) {
         // 你可以自己更改目录
-        String path = "E:\\系统盘_桌面\\music\\photo";
+        String path = "D:\\DataStructures\\src";
         System.out.println(getFileNumber(path));
         System.out.println(getFileNumber2(path));
     }

@@ -11,7 +11,7 @@ public class Code06_SubArrayMaxSum {
         for (int i = 0; i < arr.length; i++) {
             cur += arr[i];
             res = Math.max(res, cur);
-            cur = cur < 0 ? 0 : cur;
+            cur = Math.max(cur, 0);
         }
         return res;
     }
