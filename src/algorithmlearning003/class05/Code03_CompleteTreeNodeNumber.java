@@ -29,9 +29,9 @@ public class Code03_CompleteTreeNodeNumber {
         if(level == h){
             return 1;
         }
-        if(mostLeftLevel(node.right,level + 1) == h){//？
+        if(mostLeftLevel(node.right,level + 1) == h){//说明以左子树为头的二叉树是满二叉树
             return (1 << (h - level)) + bs(node.right, level + 1, h);
-        }else{
+        }else{//说明以右子树为头的二叉树是满二叉树，但是比左树少了一层
             return (1 << (h - level - 1)) + bs(node.left, level + 1, h);
         }
     }

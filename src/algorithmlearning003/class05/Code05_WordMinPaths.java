@@ -31,6 +31,7 @@ public class Code05_WordMinPaths {
 
     public static HashMap<String, ArrayList<String>> getNexts(List<String> words) {
         Set<String> dict = new HashSet<>(words);
+        // next: key=当前字符串 val=当前字符串只变动一个字符能达到的字符串
         HashMap<String, ArrayList<String>> nexts = new HashMap<>();
         for (int i = 0; i < words.size(); i++) {
             nexts.put(words.get(i), getNext(words.get(i), dict));
@@ -38,7 +39,12 @@ public class Code05_WordMinPaths {
         return nexts;
     }
 
-
+    /**
+     *
+     * @param word 当前字符串
+     * @param dict 字典
+     * @return 找出当前字符串只变动一个字符能在dict中找到的字符创
+     */
     public static ArrayList<String> getNext(String word, Set<String> dict) {
         ArrayList<String> res = new ArrayList<>();
         char[] chars = word.toCharArray();
@@ -60,11 +66,11 @@ public class Code05_WordMinPaths {
 
     public static HashMap<String, Integer> getDistances(String start, HashMap<String, ArrayList<String>> nexts) {
 
-        HashMap<String, Integer> distance = new HashMap<>();
+        HashMap<String, Integer> distance = new HashMap<>();//返回的结果表， key 当前string val 当前string距离start的距离
         distance.put(start, 0);
-        Queue<String> queue = new LinkedList<>();
+        Queue<String> queue = new LinkedList<>();//深度优先遍历
         queue.offer(start);
-        HashSet<String> set = new HashSet<>();
+        HashSet<String> set = new HashSet<>();//避免重复加入
         set.add(start);
 
         while (!queue.isEmpty()) {
@@ -82,7 +88,15 @@ public class Code05_WordMinPaths {
 
     }
 
-
+    /**
+     *  深度优先遍历
+     * @param start 当前来到的字符串
+     * @param to    要变成的字符创
+     * @param nexts 每个字符串以及它的下一级（只变动一个字符）
+     * @param distances 每个字符串距离start的距离表
+     * @param path 沿途的路径
+     * @param res 收集的结果表
+     */
     public static void getShortesPath(String start, String to,
                                       HashMap<String, ArrayList<String>> nexts,
                                       HashMap<String, Integer> distances,
@@ -91,7 +105,7 @@ public class Code05_WordMinPaths {
         path.add(start);
         if (to.equals(start)) {
             res.add(new LinkedList<>(path));
-        }else{
+        } else {
             for (String next : nexts.get(start)) {
                 if (distances.get(next) == distances.get(start) + 1) {
                     getShortesPath(next, to, nexts, distances, path, res);
@@ -105,8 +119,8 @@ public class Code05_WordMinPaths {
     public static void main(String[] args) {
         String start = "abc";
         String end = "cab";
-        String[] test = { "abc", "cab", "acc", "cbc", "ccc", "cac", "cbb",
-                "aab", "abb" };
+        String[] test = {"abc", "cab", "acc", "cbc", "ccc", "cac", "cbb",
+                "aab", "abb"};
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < test.length; i++) {
             list.add(test[i]);
@@ -120,11 +134,6 @@ public class Code05_WordMinPaths {
         }
 
     }
-
-
-
-
-
 
 
 }
