@@ -3,7 +3,7 @@ package greatoffer.class04;
 import java.util.*;
 import java.util.Map.Entry;
 
-// 本题测试链接 : https://leetcode.com/problems/the-skyline-problem/
+// 本题测试链接 : https://leetcode-cn.com/problems/the-skyline-problem/
 public class Code08_TheSkylineProblem {
 
     public static class Node {
@@ -25,18 +25,24 @@ public class Code08_TheSkylineProblem {
         }
     }
 
+    // 外轮廓线要保证去到每一个点的最大的高度，并且当前高度如果和上一个一样的话，需要淘汰掉
+    // 那么就需要记录到达每个点的时候 目前的最高的记录，并且在高度变化的时候，需要对高度的删除
+    // 那么对应一个高楼，左边是该高度出现的位置，右边是该高度删除的位置
+    // 每个点 [最终] 的高度应该 是这个点能见到的高度
     public static List<List<Integer>> getSkyline(int[][] matrix) {
         Node[] nodes = new Node[matrix.length * 2];
         for (int i = 0; i < matrix.length; i++) {
             nodes[i * 2] = new Node(matrix[i][0], true, matrix[i][2]);
             nodes[i * 2 + 1] = new Node(matrix[i][1], false, matrix[i][2]);
         }
+        // 按照 x 进行排序，保证到达该点的时候，能够见到的 其他店的高度 都应该在表里了
         Arrays.sort(nodes, new NodeComparator());
         // key  高度  value 次数
         TreeMap<Integer, Integer> mapHeightTimes = new TreeMap<>();
+        // key 坐标 value 高度
         TreeMap<Integer, Integer> mapXHeight = new TreeMap<>();
         for (int i = 0; i < nodes.length; i++) {
-            if (nodes[i].isAdd) {
+            if (nodes[i].isAdd) { // 如果是左边，代表高度出现的位置，记录一下这个高度出现的次数，因为可能存在多个
                 if (!mapHeightTimes.containsKey(nodes[i].h)) {
                     mapHeightTimes.put(nodes[i].h, 1);
                 } else {
@@ -49,7 +55,7 @@ public class Code08_TheSkylineProblem {
                     mapHeightTimes.put(nodes[i].h, mapHeightTimes.get(nodes[i].h) - 1);
                 }
             }
-            if (mapHeightTimes.isEmpty()) {
+            if (mapHeightTimes.isEmpty()) {// 记录一下当前这个点的高度 -- 最大的高度
                 mapXHeight.put(nodes[i].x, 0);
             } else {
                 mapXHeight.put(nodes[i].x, mapHeightTimes.lastKey());

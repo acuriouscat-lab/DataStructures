@@ -47,6 +47,7 @@ public class Code02_StickersToSpellWord {
             if (map[i][target[0] - 'a'] == 0) {
                 continue;
             }
+            // 记录剩余多少的字符
             StringBuilder sb = new StringBuilder();
             for (int j = 0; j < 26; j++) {//a-z
                 if (tmap[j] > 0) {

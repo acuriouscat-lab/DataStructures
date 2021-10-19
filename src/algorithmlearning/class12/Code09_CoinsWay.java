@@ -25,7 +25,7 @@ public class Code09_CoinsWay {
         }
         int ways = 0;
         for (int zhang = 0; arr[index] * zhang <= rest; zhang++) {
-            ways += process1(arr,index+1,rest-arr[index]*zhang);
+            ways += process1(arr, index + 1, rest - arr[index] * zhang);
         }
         return ways;
     }
@@ -35,7 +35,7 @@ public class Code09_CoinsWay {
             return 0;
         }
         int N = arr.length;
-        int[][] dp = new int[N+1][aim+1];
+        int[][] dp = new int[N + 1][aim + 1];
         for (int i = 0; i < N + 1; i++) {
             for (int j = 0; j < aim + 1; j++) {
                 dp[i][j] = -1;
@@ -43,15 +43,16 @@ public class Code09_CoinsWay {
         }
         return process2(arr, 0, aim, dp);
     }
+
     // 如果index和rest的参数组合，是没算过的，dp[index][rest] == -1
     // 如果index和rest的参数组合，是算过的，dp[index][rest]  > - 1
     private static int process2(int[] arr, int index, int rest, int[][] dp) {
-        if(dp[index][rest] != -1){
+        if (dp[index][rest] != -1) {
             return dp[index][rest];
         }
-        if(index == arr.length) {
-            dp[index][rest] = rest == 0 ? 1 :0;
-            return  dp[index][rest];
+        if (index == arr.length) {
+            dp[index][rest] = rest == 0 ? 1 : 0;
+            return dp[index][rest];
         }
         int ways = 0;
         for (int zhang = 0; arr[index] * zhang <= rest; zhang++) {
@@ -68,7 +69,7 @@ public class Code09_CoinsWay {
         }
         int N = arr.length;
         int[][] dp = new int[N + 1][aim + 1];
-        dp[N][0] =1 ;
+        dp[N][0] = 1;
         for (int index = N - 1; index >= 0; index--) {//但是每个格子存在枚举行为，还可以进行优化
             for (int rest = 0; rest < aim + 1; rest++) {
                 int ways = 0;
@@ -99,12 +100,28 @@ public class Code09_CoinsWay {
         return dp[0][aim];
     }
 
+    public static int ways5(int[] arr, int aim) {
+        if (arr == null || arr.length == 0 || aim < 0) {
+            return 0;
+        }
+        int N = arr.length;
+        int[] dp = new int[aim + 1];
+        dp[0] = 1;
+        for(int i = 0; i < N; i++){
+            for (int j = arr[i]; j <= aim; j++) {
+                dp[j] += dp[j - arr[i]];
+            }
+        }
+        return dp[aim];
+    }
+
     public static void main(String[] args) {
-        int[] arr = { 5, 10,50,100 };
+        int[] arr = {5, 10, 50, 100};
         int sum = 1000;
         System.out.println(ways1(arr, sum));
         System.out.println(ways2(arr, sum));
         System.out.println(ways3(arr, sum));
         System.out.println(ways4(arr, sum));
+        System.out.println(ways5(arr, sum));
     }
 }

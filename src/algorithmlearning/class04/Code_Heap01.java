@@ -5,7 +5,7 @@ package algorithmlearning.class04;
  */
 public class Code_Heap01 {
 
-    public static class MyMaxHeap{
+    public static class MyMaxHeap {
         private final int limit;
         private int heapSize;
         private int[] arr;
@@ -20,18 +20,19 @@ public class Code_Heap01 {
             return heapSize == limit;
         }
 
-        public boolean isEmpty(){
+        public boolean isEmpty() {
             return heapSize == 0;
         }
 
         //放入一个数 并且保持大根堆
         public void push(int value) {
-            if(heapSize == limit){
+            if (heapSize == limit) {
                 throw new RuntimeException("heap is full");
             }
             arr[heapSize] = value;
             heapInsert(arr, heapSize++);
         }
+
         //新插入的值 往上看  是否需要调换
         private void heapInsert(int[] arr, int index) {
             while (arr[index] > arr[(index - 1) / 2]) {
@@ -41,7 +42,7 @@ public class Code_Heap01 {
         }
 
         //用户需要弹出最大的值，并保持大根堆的结构
-        public int pop(){
+        public int pop() {
 
             int ans = arr[0];
 
@@ -53,18 +54,18 @@ public class Code_Heap01 {
 
         //往下看
         private void heapify(int[] arr, int index, int heapSize) {
-            int left = 2*index +1;
+            int left = 2 * index + 1;
             while (left < heapSize) {
                 //判断左右孩子哪个大
-                int max = left + 1 < heapSize && arr[left+1] > arr[left ] ? left+1 : left ;
+                int max = left + 1 < heapSize && arr[left + 1] > arr[left] ? left + 1 : left;
                 //判断孩子和当前节点哪个大
-                max = arr[max] > arr[index] ? max :index;
+                max = arr[max] > arr[index] ? max : index;
                 if (max == index) {
                     break;
                 }
                 swap(arr, max, index);
                 index = max;
-                left = 2*index +1;
+                left = 2 * index + 1;
             }
         }
 

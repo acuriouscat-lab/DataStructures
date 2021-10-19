@@ -15,7 +15,7 @@ public class Code02_MinCameraCover {
             return 0;
         }
         Info data = process(root);
-        return Math.min(data.uncovered + 1, Math.min(data.coveredHasCamera, data.coveredNoCamera));
+        return (int)Math.min(data.uncovered + 1, Math.min(data.coveredHasCamera, data.coveredNoCamera));
     }
 
     public static Info process(TreeNode node) {
@@ -24,20 +24,21 @@ public class Code02_MinCameraCover {
         }
         Info left = process(node.left);
         Info right = process(node.right);
-        int uncovered = left.coveredNoCamera + right.coveredNoCamera;
-        int coveredHasCamera = Math.min(left.uncovered, left.coveredNoCamera) + Math.min(right.uncovered, right.coveredNoCamera) + 1;
-        int coveredNoCamera = Math.min(left.coveredHasCamera +
+        long uncovered = left.coveredNoCamera + right.coveredNoCamera;
+        long coveredHasCamera = Math.min(left.uncovered, Math.min(left.coveredHasCamera, left.coveredNoCamera))
+                + Math.min(right.uncovered, Math.min(right.coveredHasCamera, right.coveredNoCamera)) + 1;
+        long coveredNoCamera = Math.min(left.coveredHasCamera +
                 right.coveredHasCamera, Math.min(left.coveredHasCamera +
                 right.coveredNoCamera, left.coveredNoCamera + right.coveredHasCamera));
         return new Info(uncovered, coveredHasCamera, coveredNoCamera);
     }
 
     public static class Info {
-        public int uncovered;
-        public int coveredHasCamera;
-        public int coveredNoCamera;
+        public long uncovered;
+        public long coveredHasCamera;
+        public long coveredNoCamera;
 
-        public Info(int uc, int chc, int cnc) {
+        public Info(long uc, long chc, long cnc) {
             uncovered = uc;
             coveredHasCamera = chc;
             coveredNoCamera = cnc;

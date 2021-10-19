@@ -34,7 +34,7 @@ public class Code08_CardsInLine {
 
 
     public static void main(String[] args) {
-        int[] arr = { 4,7,9,5,19,29,80,4 };
+        int[] arr = { 1,5,2 };
         // A 4 9
         // B 7 5
         System.out.println(win1(arr));

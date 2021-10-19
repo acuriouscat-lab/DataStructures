@@ -2,6 +2,7 @@ package greatoffer.class04;
 
 public class Code03_SubMatrixMaxSum {
 
+    // 最大子矩阵和
     public static int maxSum(int[][] m) {
         if (m == null || m.length == 0 || m[0].length == 0) {
             return 0;
@@ -10,6 +11,7 @@ public class Code03_SubMatrixMaxSum {
         int N = m.length;
         int M = m[0].length;
         int max = Integer.MIN_VALUE;
+        // 将子矩阵问题转化为 一维的 子数组最大累加和问题
         for (int i = 0; i < N; i++) {
             // i~j
             int[] s = new int[M];

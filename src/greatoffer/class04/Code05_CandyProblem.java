@@ -2,11 +2,13 @@ package greatoffer.class04;
 
 public class Code05_CandyProblem {
 
+    //https://leetcode-cn.com/problems/candy/
     public static int candy1(int[] arr) {
         if (arr == null || arr.length == 0) {
             return 0;
         }
         int N = arr.length;
+        // 预处理数组
         int[] left = new int[N];
         int[] right = new int[N];
         left[0] = 1;

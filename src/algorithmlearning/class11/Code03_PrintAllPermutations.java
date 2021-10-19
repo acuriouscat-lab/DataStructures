@@ -36,6 +36,7 @@ public class Code03_PrintAllPermutations {
         chars[i] = chars[index];
         chars[index] = temp;
     }
+
     //打印一个字符串的全部排列，要求不要出现重复的排列
     public static ArrayList<String> permutationNoRepeat(String str){
         ArrayList<String> res = new ArrayList<>();

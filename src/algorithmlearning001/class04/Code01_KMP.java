@@ -38,6 +38,7 @@ public class Code01_KMP {
             return new int[]{-1};
         }
         int[] next = new int[ms.length];
+        // 默认
         next[0] = -1;
         next[1] = 0;
         //i-1 位置的最长后缀

@@ -20,7 +20,7 @@ public class Code02_SmallSum {
     }
 
     private static int process(int[] arr, int left, int right) {
-        if(left == right) return 0;
+        if (left == right) return 0;
 
         int mid = left + ((right - left) >> 1);
         // 左边有几个 + 右边有几个 + 整体有几个
@@ -30,7 +30,7 @@ public class Code02_SmallSum {
     private static int merge(int[] arr, int left, int mid, int right) {
         int[] help = new int[right - left + 1];
         int l = left;
-        int m = mid+1;
+        int m = mid + 1;
         int res = 0;
         int index = 0;
         while (l <= mid && m <= right) {

@@ -34,6 +34,7 @@ public class Code05_MinBoat {
         while (L >= 0) {
             // 表示左边解决掉的个数
             int solved = 0;
+            // 左边和右边结合能结合多少个
             while (R < N && arr[L] + arr[R] <= limit) {
                 R++;
                 solved++;
@@ -45,6 +46,7 @@ public class Code05_MinBoat {
                 L = Math.max(-1, L - solved);
             }
         }
+        // 左边一共有多少个
         int all = lessR + 1;
         // 左边结合了的个数
         int used = all - noUsed;
@@ -53,6 +55,8 @@ public class Code05_MinBoat {
         // 结合了的（一艘船） + （左边没办法和右边结合的，那么只能喝左边结合）(两人一艘【向上取整】) + 右边没办法结合的（一人一艘船）
         return used + ((noUsed + 1) >> 1) + moreUnsolved;
     }
+
+
 
 
 }

@@ -50,7 +50,7 @@ public class Code02_AddShortestEnd {
 
 
     public static void main(String[] args) {
-        String str1 = "abcd123321";
+        String str1 = "aacecaaa";
         System.out.println(shortestEnd(str1));
     }
 }

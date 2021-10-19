@@ -9,6 +9,7 @@ public class Code04_LIS {
             return null;
         }
         int[] dp = getdp1(arr);
+
         return generateLIS(arr, dp);
     }
 
@@ -93,9 +94,14 @@ public class Code04_LIS {
     public static void main(String[] args) {
         int[] arr = {2, 1, 5, 3, 6, 4, 8, 9, 7};
         printArray(arr);
-        printArray(lis1(arr));
-        printArray(lis2(arr));
-        System.out.println(Arrays.toString(getdp1(arr)));
-        System.out.println(Arrays.toString(getdp2(arr)));
+//        printArray(lis1(arr));
+//        printArray(lis2(arr));
+//        System.out.println(Arrays.toString(getdp1(arr)));
+//        System.out.println(Arrays.toString(getdp2(arr)));
+        System.out.println();
+        System.out.println(Arrays.toString(getdp2(new int[]{1, 3, 5, 4, 2})));
+        System.out.println(Arrays.toString(getdp1(new int[]{1, 3, 5, 4, 7})));
+        System.out.println();
+        printArray(lis2(new int[]{1, 3, 5, 4, 7}));
     }
 }

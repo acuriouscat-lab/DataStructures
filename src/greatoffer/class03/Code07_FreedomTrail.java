@@ -33,7 +33,8 @@ public class Code07_FreedomTrail {
         return process1(map, 0, 0, key.toCharArray(), strs.length, dp);
     }
 
-
+    // arrs[index] 及其往后需要的步数
+    // 上一步在 原始的 ring 的 第 preIndex
     public static int process1(HashMap<Character, ArrayList<Integer>> map, int preIndex, int index, char[] arrs, int N, int[][] dp) {
         if (dp[preIndex][index] != -1) {
             return dp[preIndex][index];

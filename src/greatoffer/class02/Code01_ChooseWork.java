@@ -32,6 +32,7 @@ public class Code01_ChooseWork {
         map.put(cur.hard, cur.money);
         map.put(0, 0);
         for (int i = 1; i < jobs.length; i++) {
+            // 要得到，难度高的，报酬也要
             // 去掉难度一样的但是报酬少的 和 难度高但是给的却比难度低的少的
             if (cur.hard == jobs[i].hard || cur.money > jobs[i].money) {
                 continue;

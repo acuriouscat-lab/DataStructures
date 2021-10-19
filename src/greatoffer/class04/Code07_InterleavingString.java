@@ -1,8 +1,8 @@
 package greatoffer.class04;
 
-// 本题测试链接 : https://leetcode.com/problems/interleaving-string/
+// 本题测试链接 : https://leetcode-cn.com/problems/interleaving-string/
 public class Code07_InterleavingString {
-
+    // s3 是否是 s1 和 s2 的交错字符串
     public boolean isInterleave(String s1, String s2, String s3) {
         if (s1 == null || s2 == null || s3 == null) {
             return false;

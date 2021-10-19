@@ -39,20 +39,35 @@ public class Code01_CordCoverMaxPoint {
         return ans;
     }
 
-    // O(n)
+//    // O(n)
+//    public static int maxPoint2(int[] arr,int k){
+//        int left = 0;
+//        int right = 0;
+//        int ans = 1;
+//        // 双指针 只要 满足能过够覆盖范围，right一直往右边扩
+//        while (right < arr.length) {
+//            while (right < arr.length && arr[right] - arr[left] <= k) {
+//                right++;
+//            }
+//            ans = Math.max(ans,right - (left++));
+//        }
+//        return ans;
+//    }
+
     public static int maxPoint2(int[] arr,int k){
         int left = 0;
         int right = 0;
         int ans = 1;
-        // 双指针 只要 满足能过够覆盖范围，right一直往右边扩
         while (right < arr.length) {
             while (right < arr.length && arr[right] - arr[left] <= k) {
                 right++;
             }
-            ans = Math.max(ans,right - (left++));
+            ans = Math.max(ans, right - left);
+            left++;
         }
         return ans;
     }
+
 
     // for test
     public static int[] generateArray(int len, int max) {

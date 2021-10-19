@@ -15,6 +15,7 @@ public class Code_FindFirstIntersectNode {
         if (head1 == null || head2 == null) {
             return null;
         }
+        // 快慢指针 找到入环的节点
         Node loop1 = getLoopNode(head1);
         Node loop2 = getLoopNode(head2);
         if (loop1 == null && loop2 == null) {

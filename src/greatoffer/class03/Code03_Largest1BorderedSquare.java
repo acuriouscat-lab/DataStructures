@@ -38,12 +38,14 @@ public class Code03_Largest1BorderedSquare {
             right[r - 1][c - 1] = 1;
             down[r - 1][c - 1] = 1;
         }
+        // 最后一列
         for (int i = r - 2; i != -1; i--) {
             if (m[i][c - 1] == 1) {
                 right[i][c - 1] = 1;
                 down[i][c - 1] = down[i + 1][c - 1] + 1;
             }
         }
+        // 最后一行
         for (int i = c - 2; i != -1; i--) {
             if (m[r - 1][i] == 1) {
                 right[r - 1][i] = right[r - 1][i + 1] + 1;
@@ -60,6 +62,7 @@ public class Code03_Largest1BorderedSquare {
         }
     }
 
+    // 枚举每一个左上角点，判断是否有存在为 size 大小的
     public static boolean hasSizeOfBorder(int[][] matrix, int[][] down, int[][] right, int size) {
         for (int i = 0; i < matrix.length - size + 1; i++) {
             for (int j = 0; j < matrix[0].length - size + 1; j++) {

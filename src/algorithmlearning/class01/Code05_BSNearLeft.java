@@ -22,6 +22,7 @@ public class Code05_BSNearLeft {
                 L = mid + 1;
             }
         }
+        System.out.println(index + " " + L );
         return index;
     }
 
@@ -56,23 +57,27 @@ public class Code05_BSNearLeft {
     }
 
     public static void main(String[] args) {
-        int testTime = 500000;
-        int maxSize = 10;
-        int maxValue = 100;
-        boolean succeed = true;
-        for (int i = 0; i < testTime; i++) {
-            int[] arr = generateRandomArray(maxSize, maxValue);
-            Arrays.sort(arr);
-            int value = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
-            if (test(arr, value) != nearestIndex(arr, value)) {
-                printArray(arr);
-                System.out.println(value);
-                System.out.println(test(arr, value));
-                System.out.println(nearestIndex(arr, value));
-                succeed = false;
-                break;
-            }
-        }
-        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+//        int testTime = 500000;
+//        int maxSize = 10;
+//        int maxValue = 100;
+//        boolean succeed = true;
+//        for (int i = 0; i < testTime; i++) {
+//            int[] arr = generateRandomArray(maxSize, maxValue);
+//            Arrays.sort(arr);
+//            int value = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+//            if (test(arr, value) != nearestIndex(arr, value)) {
+//                printArray(arr);
+//                System.out.println(value);
+//                System.out.println(test(arr, value));
+//                System.out.println(nearestIndex(arr, value));
+//                succeed = false;
+//                break;
+//            }
+//        }
+//        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+        int[] ints = generateRandomArray(10, 20);
+        printArray(ints);
+        System.out.println(nearestIndex(ints, 6));
+
     }
 }

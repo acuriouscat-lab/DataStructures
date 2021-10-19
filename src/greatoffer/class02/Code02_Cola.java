@@ -73,11 +73,13 @@ public class Code02_Cola {
         int puts = 0;
         int preMoney = 0;
         int preZhang = 0;
+        // 因为优先使用大面额的钱，但是有可能之前的钱还有剩余，但是买不了一瓶，所以到达当前面额的时候，第一次的投币数量和找零是不一样的
+        // 在都使用一种面额的时候，那么找零和投币数量是可以一起算出来的
         for (int i = 0; i < qian.length && m != 0; i++) {
             // 当前的钱第一次买一瓶需要多少张
             // 需要加上之前剩余的钱，并且向上取整   a / b  -》 (a + b - 1) / b
             int curMoneyFirstBuyOne = (x - preMoney + qian[i] - 1) / qian[i];
-            if (zhang[i] >= curMoneyFirstBuyOne) {
+            if (zhang[i] >= curMoneyFirstBuyOne) { // 如果加上之前的钱，足够买第一瓶谁
                 giveRest(qian, zhang, i + 1, curMoneyFirstBuyOne * qian[i] + preMoney - x, 1);
                 zhang[i] -= curMoneyFirstBuyOne;
                 puts += curMoneyFirstBuyOne + preZhang;

@@ -37,19 +37,16 @@ public class Code04_MinSwapStep {
         int gl = 0;
         int gi = 0;
         char[] str = s.toCharArray();
-        // 小贪心: 如果G全去左边，那么左边的G肯定一次放到0123...
-        // gi 表示当前需要交换的次数
-        // gl 表示需要将当前的G交换的做左边的哪个位置
         for (int i = 0; i < str.length; i++) {
             if (str[i] == 'G') {
-                gi += i - gl;
-                gl++;
+                gl += i - gi;
+                gi++;
             }else{
-                bi += i - bl;
-                bl++;
+                bl += i - bi;
+                bi++;
             }
         }
-        return Math.min(bi, gi);
+        return Math.min(bl, gl);
     }
 
     // 为了测试

@@ -93,6 +93,7 @@ public class Code03_LightProblem {
         return Math.min(p1, p2);
     }
 
+    // 判断 preStatus 的状态 来考虑从 nextIndx 位置该不该按，因为 nextIndx 位置不按的话 那么 preStatus 的状态就再也不会被改变了
     public static int process1(int[] arr, int nextIndex, int preStatus, int curStatus) {
         if (nextIndex == arr.length) {
             return preStatus == curStatus ? preStatus ^ 1 : Integer.MAX_VALUE;

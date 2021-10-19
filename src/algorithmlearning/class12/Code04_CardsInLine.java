@@ -15,6 +15,7 @@ public class Code04_CardsInLine {
 
         return Math.max(f(arr, 0, arr.length - 1), s(arr, 0, arr.length - 1));
     }
+
     //在arr L...R 上 后手拿牌
     private static int s(int[] arr, int L, int R) {
         if (L == R) {
@@ -38,16 +39,16 @@ public class Code04_CardsInLine {
         int N = arr.length;
         int[][] f = new int[N][N];
         int[][] s = new int[N][N];
-        for(int i = 0; i < N;i++) {
+        for (int i = 0; i < N; i++) {
             f[i][i] = arr[i];
         }
         // s[i][i] = 0;
-        for(int i = 1; i < N;i++) {
-            int L =0;
-            int R =i;
-            while(L < N && R < N) {
+        for (int i = 1; i < N; i++) {
+            int L = 0;
+            int R = i;
+            while (L < N && R < N) {
                 f[L][R] = Math.max(
-                        arr[L] + s[L + 1][ R],
+                        arr[L] + s[L + 1][R],
                         arr[R] + s[L][R - 1]
                 );
                 s[L][R] = Math.min(
@@ -59,9 +60,8 @@ public class Code04_CardsInLine {
 
             }
         }
-        return Math.max(f[0][N-1], s[0][N-1]);
+        return Math.max(f[0][N - 1], s[0][N - 1]);
     }
-
 
 
 }

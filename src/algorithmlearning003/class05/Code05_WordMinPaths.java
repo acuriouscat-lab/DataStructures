@@ -21,7 +21,7 @@ public class Code05_WordMinPaths {
         list.add(start);
         // 得到每个字符 只变动一个字符能到达的在list中的邻居
         HashMap<String, ArrayList<String>> nexts = getNexts(list);
-        //每个字符离 start 的距离表
+        // 每个字符离 start 的距离表
         HashMap<String, Integer> distances = getDistances(start, nexts);
         LinkedList<String> path = new LinkedList<>();
         List<List<String>> res = new ArrayList<>();
@@ -63,7 +63,12 @@ public class Code05_WordMinPaths {
         return res;
     }
 
-
+    /**
+     *  宽度优先遍历
+     * @param start start
+     * @param nexts 每个字符串一步能到的字符
+     * @return  每个字符离 start 的距离
+     */
     public static HashMap<String, Integer> getDistances(String start, HashMap<String, ArrayList<String>> nexts) {
 
         HashMap<String, Integer> distance = new HashMap<>();//返回的结果表， key 当前string val 当前string距离start的距离

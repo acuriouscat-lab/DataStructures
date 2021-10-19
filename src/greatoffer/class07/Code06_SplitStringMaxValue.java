@@ -53,6 +53,7 @@ public class Code06_SplitStringMaxValue {
             records.put(parts[i], record[i]);
         }
         int N = str.length();
+        // dp[i][j] 表示 从 i.. 能够划分出 j 块 一共能得到多少
         int[][] dp = new int[N + 1][K + 1];
         for (int rest = 1; rest <= K; rest++) {
             dp[N][rest] = -1;
@@ -68,6 +69,37 @@ public class Code06_SplitStringMaxValue {
                     }
                 }
                 dp[index][rest] = ans;
+            }
+        }
+        return dp[0][K];
+    }
+
+
+    public static int maxRecord4(String str, int K, String[] parts, int[] record) {
+        if (str == null || str.length() == 0) {
+            return 0;
+        }
+        HashMap<String, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < parts.length; i++) {
+            map.put(parts[i], record[i]);
+        }
+        int N = str.length();
+        int[][] dp = new int[N + 1][K + 1];
+        for (int i = 1; i <= K; i++) {
+            dp[N][i] = -1;
+        }
+        for (int i = N - 1; i >= 0; i--) {
+            for (int j = 1; j <= K; j++) {
+                int ans = -1;
+                for (int end = i; end < N; end++) {
+                    String cur = str.substring(i, end + 1);
+                    int next = map.containsKey(cur) ? dp[end + 1][j - 1] : -1;
+                    if (next != -1) {
+                        ans = Math.max(ans, map.get(cur) + next);
+                    }
+                }
+                dp[i][j] = ans;
             }
         }
         return dp[0][K];
@@ -136,13 +168,13 @@ public class Code06_SplitStringMaxValue {
     public static void main(String[] args) {
         String str = "abcdefg";
         int K = 3;
-        String[] parts = { "abc", "def", "g", "ab", "cd", "efg", "defg" };
-        int[] record = { 1, 1, 1, 3, 3, 3, 2 };
+        String[] parts = {"abc", "def", "g", "ab", "cd", "efg", "defg"};
+        int[] record = {1, 1, 1, 3, 3, 3, 2};
         System.out.println(maxRecord1(str, K, parts, record));
         System.out.println(maxRecord2(str, K, parts, record));
         System.out.println(maxRecord3(str, K, parts, record));
+        System.out.println(maxRecord4(str, K, parts, record));
     }
-
 
 
 }

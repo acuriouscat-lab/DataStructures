@@ -19,21 +19,21 @@ public class Code04_MaxPairNumber {
         int L = 0;
         int R = 0;
         int ans = 0;
-        // 优先让小的先安排
+        // 优先让小的先安排，一种贪心策略
         while (R < N) {
-            if(set[L]){
+            if (set[L]) {
                 L++;
             } else if (L == R) {
                 R++;
-            }else{
+            } else {
                 int distance = arr[R] - arr[L];
                 if (distance == k) {
                     set[R++] = true;
-                    ans ++;
+                    ans++;
                     L++;
                 } else if (distance < k) {
                     R++;
-                }else{
+                } else {
                     L++;
                 }
             }
@@ -124,7 +124,6 @@ public class Code04_MaxPairNumber {
         arr[i] = arr[j];
         arr[j] = tmp;
     }
-
 
 
 }

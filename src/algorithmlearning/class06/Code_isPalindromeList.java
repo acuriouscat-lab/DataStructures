@@ -68,10 +68,11 @@ public class Code_isPalindromeList {
         }
         Node n1 = head;
         Node n2 = head;
+        //将n1指向中点
         while (n2.next != null && n2.next.next != null) {
             n1 = n1.next;
             n2 = n2.next.next;
-        }//将n1指向中点
+        }
         n2 = n1.next;
         n1.next = null;
         Node n3 = null;

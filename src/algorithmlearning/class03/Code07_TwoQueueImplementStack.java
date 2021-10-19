@@ -6,10 +6,11 @@ import java.util.Stack;
 
 public class Code07_TwoQueueImplementStack {
     //    //2）如何用队列结构实现栈结构
-    public static class TwoQueueStack<T>{
+    public static class TwoQueueStack<T> {
         public Queue<T> queue;
         public Queue<T> help;
-        public TwoQueueStack(){
+
+        public TwoQueueStack() {
             queue = new LinkedList<>();
             help = new LinkedList<>();
         }
@@ -17,7 +18,8 @@ public class Code07_TwoQueueImplementStack {
         public void push(T value) {
             queue.add(value);
         }
-        public T pop(){
+
+        public T pop() {
             // 弹到help中，并且只剩一个
             while (queue.size() > 1) {
                 help.add(queue.poll());
@@ -30,7 +32,8 @@ public class Code07_TwoQueueImplementStack {
             help = temp;
             return ans;
         }
-        public T peek(){
+
+        public T peek() {
             // 得到最后一个
             while (queue.size() > 1) {
                 help.add(queue.poll());
@@ -43,10 +46,11 @@ public class Code07_TwoQueueImplementStack {
             return ans;
         }
 
-        public boolean isEmpty(){
+        public boolean isEmpty() {
             return queue.isEmpty();
         }
     }
+
     public static void main(String[] args) {
         System.out.println("test begin");
         TwoQueueStack<Integer> myStack = new TwoQueueStack<>();
