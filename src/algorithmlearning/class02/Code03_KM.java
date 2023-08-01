@@ -1,8 +1,11 @@
 package algorithmlearning.class02;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-
+// 输入一定能够保证，数组中所有的数都出现了M次，只有一种数出现了K次
+// 1 <= K < M
+// 返回这种数
 public class Code03_KM {
     public static int test(int[] arr, int k, int m) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -112,9 +115,39 @@ public class Code03_KM {
         return ((int) (Math.random() * range) + 1) - ((int) (Math.random() * range) + 1);
     }
 
+
+    // 更简洁的写法
+    public static int km(int[] arr, int k, int m) {
+        int[] help = new int[32];
+        for (int num : arr) {
+            for (int i = 0; i < 32; i++) {
+                help[i] += (num >> i) & 1;
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i < 32; i++) {
+            help[i] %= m;
+            if (help[i] != 0 ) {
+                if(help[i] % k != 0){
+                    return -1;
+                }else {
+                    ans |= 1 << i;
+                }
+            }
+        }
+        int count = 0;
+        for (int i : help) {
+            count += i;
+        }
+        if(count != k){
+            return  -1;
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int kinds = 5;
-        int range = 30;
+        int range = 10;
         int testTime = 100000;
         int max = 9;
         System.out.println("测试开始");
@@ -130,10 +163,14 @@ public class Code03_KM {
             int[] arr = randomArray(kinds, range, k, m);
             int ans1 = test(arr, k, m);
             int ans2 = onlyKTimes(arr, k, m);
-            if (ans1 != ans2) {
+            int ans3 = km(arr, k, m);
+            if (ans1 != ans2 || ans1 != ans3) {
                 System.out.println(ans1);
                 System.out.println(ans2);
+                System.out.println(ans3);
+                System.out.println(Arrays.toString(arr));
                 System.out.println("出错了！");
+                System.out.println("K:" + k + " b:" + b );
             }
         }
         System.out.println("测试结束");

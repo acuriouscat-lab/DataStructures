@@ -9,6 +9,7 @@ public class Code02_PartitionAndQuickSort {
         arr[i] = arr[j];
         arr[j] = tmp;
     }
+
     // arr[L..R]上，以arr[R]位置的数做划分值
     // <= X > X
     // <= X X
@@ -19,8 +20,8 @@ public class Code02_PartitionAndQuickSort {
         if (L == R) {
             return L;
         }
-        int lessEqual = L -1;
-        int index = L ;
+        int lessEqual = L - 1;
+        int index = L;
         while (index < R) {
             if (arr[index] <= arr[R]) {
                 swap(arr, index, ++lessEqual);
@@ -38,23 +39,24 @@ public class Code02_PartitionAndQuickSort {
             return new int[]{-1, -1};
         }
 
-        if(L == R) return new int[]{L, R};
+        if (L == R) return new int[]{L, R};
 
-        int less = L -1;
+        int less = L - 1;
         int more = R;
         int index = L;
         while (index < more) {
             if (arr[index] < arr[R]) {
                 swap(arr, index++, ++less);
             } else if (arr[index] > arr[R]) {
-                swap(arr,index,--more);
-            }else {
+                swap(arr, index, --more);
+            } else {
                 index++;
             }
         }
         swap(arr, more, R);
         return new int[]{less + 1, more};
     }
+
     /*
     在arr[L..R]范围上，进行快速排序的过程：
         1）用arr[R]对该范围做partition，<= arr[R]的数在左部分并且保证arr[R]最后来到左部分的最后一个位置，记为M； <= arr[R]的数在右部分（arr[M+1..R]）
@@ -78,6 +80,7 @@ public class Code02_PartitionAndQuickSort {
         process1(arr, L, M - 1);
         process1(arr, M + 1, R);
     }
+
     /*
     在arr[L..R]范围上，进行快速排序的过程：
         1）用arr[R]对该范围做partition，< arr[R]的数在左部分，== arr[R]的数中间，>arr[R]的数在右部分。假设== arr[R]的数所在范围是[a,b]
@@ -89,7 +92,7 @@ public class Code02_PartitionAndQuickSort {
         if (arr == null || arr.length < 2) {
             return;
         }
-        process2(arr,0,arr.length-1);
+        process2(arr, 0, arr.length - 1);
     }
 
     private static void process2(int[] arr, int L, int R) {
@@ -117,6 +120,7 @@ public class Code02_PartitionAndQuickSort {
         }
         process3(arr, 0, arr.length - 1);
     }
+
     /*
     1）通过分析知道，划分值越靠近中间，性能越好；越靠近两边，性能越差
     2）随机选一个数进行划分的目的就是让好情况和差情况都变成概率事件
